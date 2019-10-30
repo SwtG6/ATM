@@ -10,12 +10,12 @@ namespace Calculator.ConsoleLogger
     {
         public void ClearLog()
         {
-            throw new NotImplementedException();
+            Console.Clear();
         }
 
         public void LogText(string text)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(text);
         }
     }
 }
