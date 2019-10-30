@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Calculator\Calculator.csproj">
+    <ProjectReference Include="..\Calculator\AirTrafficMonitor.csproj">
       <Project>{4386f5c9-dc62-4190-88d3-8e788d1bf50e}</Project>
-      <Name>Calculator</Name>
+      <Name>AirTrafficMonitor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

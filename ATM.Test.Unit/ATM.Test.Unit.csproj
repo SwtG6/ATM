@@ -51,13 +51,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CalculatorApp\CalculatorApp.csproj">
+    <ProjectReference Include="..\CalculatorApp\ATM.App.csproj">
       <Project>{292f933e-e90f-4c9d-9bb2-019b939302c9}</Project>
-      <Name>CalculatorApp</Name>
+      <Name>ATM.App</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Calculator\Calculator.csproj">
+    <ProjectReference Include="..\Calculator\AirTrafficMonitor.csproj">
       <Project>{4386f5c9-dc62-4190-88d3-8e788d1bf50e}</Project>
-      <Name>Calculator</Name>
+      <Name>AirTrafficMonitor</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

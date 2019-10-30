@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Calculator.csproj", "{4386F5C9-DC62-4190-88D3-8E788D1BF50E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTrafficMonitor", "Calculator\AirTrafficMonitor.csproj", "{4386F5C9-DC62-4190-88D3-8E788D1BF50E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorApp", "CalculatorApp\CalculatorApp.csproj", "{292F933E-E90F-4C9D-9BB2-019B939302C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.App", "CalculatorApp\ATM.App.csproj", "{292F933E-E90F-4C9D-9BB2-019B939302C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Test.Unit", "ATM.Test.Unit\ATM.Test.Unit.csproj", "{672C3EA2-06D9-44BB-8DEB-96B374A5E798}"
 EndProject
