@@ -2,21 +2,25 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AirTrafficMonitor;
 
-namespace ATMApp
+namespace CalculatorApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Calc MyCalculator = new Calc();
+            // Using the real transponder data receiver
+            var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
-            int a = 2;
-            int b = 3;
+            // Dependency injection with the real TDR
+            var system = new TransponderReceiverUser.TransponderReceiverClient(receiver);
 
-            Console.WriteLine("add {0} + {1} = {2} ", a, b, MyCalculator.add(a, b));
+            // Let the real TDR execute in the background
+            while (true)
+                Thread.Sleep(1000);
         }
     }
 }

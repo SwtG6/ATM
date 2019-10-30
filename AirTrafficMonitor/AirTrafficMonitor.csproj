@@ -50,6 +50,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering.cs" />
     <Compile Include="Track.cs" />
+    <Compile Include="TrackHandler\ITrackHandler.cs" />
+    <Compile Include="TrackHandler\TrackHandler.cs" />
+    <Compile Include="TransponderReceiver\ITransponderReceiverClient.cs" />
+    <Compile Include="TransponderReceiver\TransponderReceiverClient.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
