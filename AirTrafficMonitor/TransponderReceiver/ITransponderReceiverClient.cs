@@ -20,5 +20,7 @@ namespace Calculator.TransponderReceiver
     public interface ITransponderReceiver
     {
         event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
+
+        void HandleTransponderData(object o, RawTransponderDataEventArgs arg);
     }
 }
