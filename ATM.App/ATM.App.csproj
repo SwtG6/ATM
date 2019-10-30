@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Calculator\AirTrafficMonitor.csproj">
+    <ProjectReference Include="..\AirTrafficMonitor\AirTrafficMonitor.csproj">
       <Project>{4386f5c9-dc62-4190-88d3-8e788d1bf50e}</Project>
       <Name>AirTrafficMonitor</Name>
     </ProjectReference>
