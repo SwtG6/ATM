@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calculator
 {
-    class Track
+    public class Track
     {
         public string Tag { get; set; }
         public int XCoordinate { get; set; }
