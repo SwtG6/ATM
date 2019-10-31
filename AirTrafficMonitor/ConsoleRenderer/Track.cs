@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleRendering
 {
-    public class Plane
+    public class Track
     {
         public string Tag { get; set; }
         public string Position { get; set; }

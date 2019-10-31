@@ -12,7 +12,7 @@ namespace ConsoleRendering
     {
         static void Main(string[] args)
         {
-            var plane = new Plane() { Tag = "Plane 1", Position = "x=1000m y =2000m", Altitude = "5000m", Velocity = "200 m/s", Course = "0 degrees" };
+            var plane = new Track() { Tag = "Plane 1", Position = "x=1000m y =2000m", Altitude = "5000m", Velocity = "200 m/s", Course = "0 degrees" };
             var transponderReceiver = new TransponderReceiver(); //publisher
             var consoleWrite = new ConsoleWrite(); // subscriber
 

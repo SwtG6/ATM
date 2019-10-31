@@ -11,7 +11,7 @@ namespace ConsoleRendering
 
     public class PlaneEventsArgs : EventArgs
     {
-        public Plane Plane { get; set; }
+        public Track Plane { get; set; }
     }
     public class TransponderReceiver
     {
@@ -21,7 +21,7 @@ namespace ConsoleRendering
         // Dette er eventen som bliver defineret ud fra delegaten. Eventen hedder DataReceived
         public event DataReceivedEventHandler DataReceived;
 
-        public void Receive(Plane plane)
+        public void Receive(Track plane)
         {
             Console.WriteLine("Vi har modtaget nyt flydata");
             Thread.Sleep(5000);
@@ -29,7 +29,7 @@ namespace ConsoleRendering
             OnDataReceived(plane);
 
         }
-        protected virtual void OnDataReceived(Plane plane)
+        protected virtual void OnDataReceived(Track plane)
         {
             //checker om der er nogle subscribed til dette event
             if (DataReceived != null)
