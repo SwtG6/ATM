@@ -18,11 +18,16 @@ namespace Calculator.Track
 
         // https://stackoverflow.com/questions/4219261/overriding-operator-how-to-compare-to-null
         // Matching of tags to make sure our tracks never have the same Tag.
-        // Attempt 1
+        // Attempt 1 - with added != operator
 
         public static bool operator !=(Track t1, Track t2)
         {
-            return t1.Tag != t2.Tag;
+            if (t1 is null)
+            {
+                return t2 is null;
+            }
+
+            return !t1.Tag.Equals(t2.Tag);
         }
 
         public static bool operator ==(Track t1, Track t2)
