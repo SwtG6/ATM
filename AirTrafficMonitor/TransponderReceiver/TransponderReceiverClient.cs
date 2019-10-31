@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using Calculator.Data;
 //using Calculator.TransponderReceiver;
 using TransponderReceiver;
+using RawTransponderDataEventArgs = TransponderReceiver.RawTransponderDataEventArgs;
 
 
 namespace Calculator.TransponderReceiver
 {
 
-    public class TransponderReceiver : ITransponderReceiver
+    public class TransponderReceiverClient : ITransponderReceiverClient
     {
         private ITransponderReceiver receiver;
         private IDataFormat _dataFormat;
@@ -20,17 +21,18 @@ namespace Calculator.TransponderReceiver
         public event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
 
 
-        public TransponderReceiver(ITransponderReceiver receiver, IDataFormat dataFormat)
+        public TransponderReceiverClient(ITransponderReceiver receiver, IDataFormat dataFormat)
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
             _dataFormat = dataFormat;
 
             // Attach to the event of the real or the fake TDR
-            this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
+            //this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
+            TransponderDataReady += ReceiverOnTransponderDataReady;
         }
 
-        private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
+        public void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
             List<Track.Track> tempTracks = new List<Track.Track>();
 

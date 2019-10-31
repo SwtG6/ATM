@@ -21,11 +21,11 @@ namespace Calculator.TransponderReceiver
         public List<string> TransponderData { get; }
     }
 
-    public delegate void TransponderDataEvent(object o, RawTransponderDataEventArgs arg);
-    public interface ITransponderReceiver
+    public delegate void TransponderDataEvent(object sender, RawTransponderDataEventArgs e);
+    public interface ITransponderReceiverClient
     {
         event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
 
-        //void HandleTransponderData(object o, RawTransponderDataEventArgs arg);
+        void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e);
     }
 }
