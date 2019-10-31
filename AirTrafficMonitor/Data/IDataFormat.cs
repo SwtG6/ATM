@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Calculator.Data
 {
-    class IDataFormat
+    public interface IDataFormat
     {
+
     }
 }
