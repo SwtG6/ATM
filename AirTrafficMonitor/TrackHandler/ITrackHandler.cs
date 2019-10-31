@@ -15,8 +15,8 @@ namespace Calculator.TrackHandler
 
     public class Tracks
     {
-        public Track New { get; set; }
-        public Track Old { get; set; }
+        public  Track.Track New { get; set; }
+        public Track.Track Old { get; set; }
 
     }
 }
