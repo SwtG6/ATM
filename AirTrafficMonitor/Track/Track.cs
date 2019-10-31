@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.Track
+namespace AirTrafficMonitor.Track
 {
     public class Track
     {

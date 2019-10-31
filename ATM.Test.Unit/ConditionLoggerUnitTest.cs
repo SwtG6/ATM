@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 using System.Threading.Tasks;
-using Calculator.ConditionLogger;
+using AirTrafficMonitor.ConditionLogger;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 

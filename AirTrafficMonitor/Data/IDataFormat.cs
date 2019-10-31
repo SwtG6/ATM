@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.Data
+namespace AirTrafficMonitor.Data
 {
     public interface IDataFormat
     {

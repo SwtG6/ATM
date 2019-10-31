@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Calculator.Track;
+using AirTrafficMonitor.Track;
 
-namespace Calculator.Calculator
+namespace AirTrafficMonitor.Calculator
 {
     public static class Calculator
     {

@@ -10,7 +10,7 @@ using Calculator.Data;
 using TransponderReceiver;
 
 
-namespace CalculatorApp
+namespace ATMApp
 {
     class Program
     {

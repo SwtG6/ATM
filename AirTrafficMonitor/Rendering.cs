@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Calculator
+namespace AirTrafficMonitor
 {
     public delegate string MuubsDel(string str);
 

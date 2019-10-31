@@ -1,4 +1,4 @@
-﻿using Calculator.TrackHandler;
+﻿using AirTrafficMonitor.TrackHandler;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.ConditionLogger
+namespace AirTrafficMonitor.ConditionLogger
 {
     public class ConditionLogger : IConditionLogger
     {

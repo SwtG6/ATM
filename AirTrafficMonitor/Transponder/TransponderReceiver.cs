@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Calculator.Transponder;
+using AirTrafficMonitor.Transponder;
 
-namespace Calculator.Transponder
+namespace AirTrafficMonitor.Transponder
 {
     public class TransponderReceiverClient
     {

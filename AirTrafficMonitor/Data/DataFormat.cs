@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 //        "Tag;XCoordinate;YCoordinate;Altitude;Timestamp"
 
 
-namespace Calculator.Data
+namespace AirTrafficMonitor.Data
 {
     public class DataFormat : IDataFormat
     {
