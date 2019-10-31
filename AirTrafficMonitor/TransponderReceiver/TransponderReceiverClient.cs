@@ -4,12 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Calculator.Data;
-//using Calculator.TransponderReceiver;
+using AirTrafficMonitor.Data;
 using TransponderReceiver;
 
 
-namespace Calculator.TransponderReceiver
+namespace AirTrafficMonitor.TransponderReceiverClient
 {
 
     public class TransponderReceiver : ITransponderReceiver
@@ -29,7 +28,7 @@ namespace Calculator.TransponderReceiver
             // Attach to the event of the real or the fake TDR
             this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
         }
-
+ 
         private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
             List<Track.Track> tempTracks = new List<Track.Track>();

@@ -7,8 +7,8 @@
     <ProjectGuid>4386f5c9-dc62-4190-88d3-8e788d1bf50e</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Calculator</RootNamespace>
-    <AssemblyName>Calculator</AssemblyName>
+    <RootNamespace>ATM</RootNamespace>
+    <AssemblyName>ATM</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

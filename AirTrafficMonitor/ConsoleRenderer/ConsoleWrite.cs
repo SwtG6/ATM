@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ConsoleRendering
+namespace AirTrafficMonitor.ConsoleRendering
 {
     public class ConsoleWrite
     {

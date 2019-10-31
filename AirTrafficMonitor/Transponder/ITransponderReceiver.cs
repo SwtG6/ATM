@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.Transponder
+namespace AirTrafficMonitor.Transponder
 {
     public class RawTransponderDataEventArgs : EventArgs
     {

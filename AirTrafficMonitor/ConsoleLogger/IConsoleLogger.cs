@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.ConsoleLogger
+namespace AirTrafficMonitor.ConsoleLogger
 {
     public interface IConsoleLogger
     {
