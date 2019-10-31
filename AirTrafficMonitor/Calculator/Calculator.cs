@@ -9,10 +9,23 @@ namespace Calculator.Calculator
     public static class Calculator
     {
 
-        //Punkt 5
-        public static bool IsInsideAirSpace(int xpos, int ypos)
+        //Punkt 1&5 - Bruges til at validere om tracks er indenfor airspace
+        public static bool TrackIsInsideAirSpace(Track track)
         {
-            return (xpos >= 10000 && xpos <= 90000) && (ypos >= 10000 && ypos <= 90000);
+            if ((track.XCoordinate >= 10000 && track.XCoordinate <= 90000) &&
+                (track.YCoordinate >= 10000 && track.YCoordinate <= 90000) &&
+                (track.Altitude >= 500 && track.Altitude <= 20000))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
+
+
+
     }
 }
