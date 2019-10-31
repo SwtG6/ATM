@@ -4,13 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Calculator.Data;
-//using Calculator.TransponderReceiver;
+using AirTrafficMonitor.Data;
 using TransponderReceiver;
 using RawTransponderDataEventArgs = TransponderReceiver.RawTransponderDataEventArgs;
 
 
-namespace Calculator.TransponderReceiver
+namespace AirTrafficMonitor.TransponderReceiver
 {
 
     public class TransponderReceiverClient : ITransponderReceiverClient
