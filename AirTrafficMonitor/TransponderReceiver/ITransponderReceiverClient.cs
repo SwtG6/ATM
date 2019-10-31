@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using Calculator.TransponderReceiver;
 
-namespace Calculator.TransponderReceiver
+namespace AirTrafficMonitor.TransponderReceiver
 {
     public class RawTransponderDataEventArgs : EventArgs
     {

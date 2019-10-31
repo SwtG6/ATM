@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AirTrafficMonitor;
-using Calculator.TransponderReceiver;
-using Calculator.Data;
+using AirTrafficMonitor.TransponderReceiver;
+using AirTrafficMonitor.Data;
 using TransponderReceiver;
 
 
@@ -31,7 +31,7 @@ namespace ATMApp
             var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
             // Dependency injection with the real TDR
-            var system = new Calculator.TransponderReceiver.TransponderReceiverClient(receiver, dataFormat);
+            var system = new AirTrafficMonitor.TransponderReceiver.TransponderReceiverClient(receiver, dataFormat);
 
             // Let the real TDR execute in the background
             while (true)

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Calculator.Data;
-using Calculator.TransponderReceiver;
+using AirTrafficMonitor.Data;
+using AirTrafficMonitor.TransponderReceiver;
 using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
-using RawTransponderDataEventArgs = Calculator.TransponderReceiver.RawTransponderDataEventArgs;
+using RawTransponderDataEventArgs = AirTrafficMonitor.TransponderReceiver.RawTransponderDataEventArgs;
 
 namespace ATM.Test.Unit
 {
