@@ -16,6 +16,7 @@ namespace Calculator.Track
         public double CompassCourse { get; set; }
         public DateTime Timer { get; set; }
 
+
         // https://stackoverflow.com/questions/4219261/overriding-operator-how-to-compare-to-null
         // Matching of tags to make sure our tracks never have the same Tag.
         // Attempt 1 - with added != operator

@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Calculator.Data;
-using Calculator.TransponderReceiver;
+//using Calculator.TransponderReceiver;
+using TransponderReceiver;
 
 
 namespace Calculator.TransponderReceiver
@@ -13,38 +14,74 @@ namespace Calculator.TransponderReceiver
 
     public class TransponderReceiver : ITransponderReceiver
     {
-        // private ITransponderReceiver dataReceiver;
-        private IDataFormat _dataFormatter;
+        private ITransponderReceiver receiver;
+        private IDataFormat _dataFormat;
 
         public event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
 
-        public TransponderReceiver(ITransponderReceiver dataReceiver, IDataFormat dataFormatter)
-        {
-            // this.dataReceiver = dataReceiver;
-            _dataFormatter = dataFormatter;
 
-            //this.dataReceiver.TransponderDataReady += HandleTransponderData;
-            TransponderDataReady += HandleTransponderData;
+        public TransponderReceiver(ITransponderReceiver receiver, IDataFormat dataFormat)
+        {
+            // This will store the real or the fake transponder data receiver
+            this.receiver = receiver;
+            _dataFormat = dataFormat;
+
+            // Attach to the event of the real or the fake TDR
+            this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
         }
 
-        public void HandleTransponderData(object o, RawTransponderDataEventArgs arg)
+        private void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
-            var list = arg.TransponderData.Select(track => _dataFormatter.CreateTrack(track)).ToList();
+            List<Track.Track> tempTracks = new List<Track.Track>();
 
-            foreach (var transponderData in arg.TransponderData)
+            // Just display data
+            foreach (var data in e.TransponderData)
             {
-                list.Add(_dataFormatter.CreateTrack(transponderData));
-
-                // handler?.Invoke(this, new RawTransponderDataEventArgs(list));
+                tempTracks.Add(_dataFormat.CreateTrack(data));
+                System.Console.WriteLine($"Transponderdata {data}");
             }
-
             if (TransponderDataReady != null)
             {
-                TransponderDataReady(this, new RawTransponderDataEventArgs(list));
+                TransponderDataReady(this, new RawTransponderDataEventArgs{tracks = tempTracks});
             }
-            
 
         }
+
+
+
+
+        ////private ITransponderReceiver dataReceiver;
+        ////private IDataFormat _dataFormatter;
+
+        ////public event RawTransponderDataEventArgs TransponderDataReady;
+
+        ////public TransponderReceiver(ITransponderReceiver dataReceiver, IDataFormat dataFormatter)
+        ////{
+        ////    this.dataReceiver = dataReceiver;
+        ////    _dataFormatter = dataFormatter;
+
+        ////    this.dataReceiver.TransponderDataReady += HandleTransponderData;
+        ////}
+
+        //public void HandleTransponderData(object o, TransponderDataEvent arg)
+        //{
+        //    List<Track.Track> tempTracks = new List<Track.Track>();
+
+        //    //var list = arg.TransponderData.Select(track => _dataFormatter.CreateTrack(track)).ToList();
+
+        //    foreach (var data in arg.TransponderData)
+        //    {
+        //        tempTracks.Add(_dataFormatter.CreateTrack(data));
+
+        //        //list.Add(_dataFormatter.CreateTrack(transponderData));
+        //    }
+
+        //    if (TransponderDataReady != null)
+        //    {
+        //        TransponderDataReady(this, new TransponderDataEvent{tracks = tempTracks});
+        //    }
+
+        //}
 
     }
 

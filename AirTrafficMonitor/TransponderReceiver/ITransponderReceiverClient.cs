@@ -3,24 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Calculator.TransponderReceiver;
+//using Calculator.TransponderReceiver;
 
 namespace Calculator.TransponderReceiver
 {
     public class RawTransponderDataEventArgs : EventArgs
     {
-        public RawTransponderDataEventArgs(List<Track.Track> transponderData)
-        {
-            TransponderData = transponderData;
-        }
+        public List<Track.Track> tracks { get; set; }
 
-        public List<Track.Track> TransponderData { get; }
+
+        //public RawTransponderDataEventArgs(List<string> transponderData)
+        //{
+        //    this.TransponderData = transponderData;
+        //}
+
+
+        public List<string> TransponderData { get; }
     }
 
+    public delegate void TransponderDataEvent(object o, RawTransponderDataEventArgs arg);
     public interface ITransponderReceiver
     {
         event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
 
-        void HandleTransponderData(object o, RawTransponderDataEventArgs arg);
+        //void HandleTransponderData(object o, RawTransponderDataEventArgs arg);
     }
 }
