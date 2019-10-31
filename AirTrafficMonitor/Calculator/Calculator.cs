@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using
 
 namespace Calculator.Calculator
 {
@@ -23,6 +24,20 @@ namespace Calculator.Calculator
                 return false;
             }
         }
+
+        //Punkt 7
+        public double GetCurrentSpeed(Track track1, Track track2)
+        {
+            int deltaX = track2.XCoordinate - track1.XCoordinate;
+            int deltaY = track2.YCoordinate - track1.YCoordinate;
+            double time = (track2.Timer - track1.Timer).TotalMilliseconds;
+
+
+            return Math.Sqrt((Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2)))/time/1000;
+        }
+
+
+
 
 
 
