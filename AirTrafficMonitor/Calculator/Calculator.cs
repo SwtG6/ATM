@@ -27,12 +27,23 @@ namespace Calculator.Calculator
         //Punkt 7 - current velocity
         public static double GetCurrentVelocity(Track track1, Track track2)
         {
-            int deltaX = track2.XCoordinate - track1.XCoordinate;
-            int deltaY = track2.YCoordinate - track1.YCoordinate;
             double time = (track2.Timer - track1.Timer).TotalMilliseconds;
 
 
-            return Math.Sqrt((Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2)))/time/1000;
+            return GetDistance(track1, track2)/time/1000;
+        }
+
+        public static double GetDistance(Track track1, Track track2)
+        {
+            var deltaX = track2.XCoordinate - track1.XCoordinate;
+            var deltaY = track2.YCoordinate - track1.YCoordinate;
+
+            return Math.Sqrt((Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2)));
+        }
+
+        public static double GetAltitudeDistance(int alt1, int alt2)
+        {
+            return Math.Abs(alt1 - alt2);
         }
 
         //Punkt 7 - current course
@@ -55,6 +66,19 @@ namespace Calculator.Calculator
         }
 
 
+        //Punkt 12 - separation condition
+        public static bool AreTracksColliding(Track track1, Track track2)
+        {
+            if (GetDistance(track1, track2) < 5000 && 
+                GetAltitudeDistance(track1.Altitude, track2.Altitude) < 300 )
+            {
+                return true; //conflicting
+            }
+            else
+            {
+                return false; // not conflicting
+            }
+        }
 
 
     }
