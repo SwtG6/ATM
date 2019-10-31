@@ -1,5 +1,5 @@
 ﻿using AirTrafficMonitor.ConditionLogger;
-using AirTrafficMonitor.TransponderReceiverClient;
+using AirTrafficMonitor.TransponderReceiver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
