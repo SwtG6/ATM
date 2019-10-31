@@ -8,6 +8,6 @@ namespace Calculator.Data
 {
     public interface IDataFormat
     {
-
+        Track CreateTrack(string trackInfo);
     }
 }
