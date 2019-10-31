@@ -8,15 +8,26 @@ namespace AirTrafficMonitor.TrackHandler
 {
     public interface ITrackHandler
     {
-
-
+        event UpdateTrack RaiseEvent;
 
     }
 
+
+    // Tracks distinction between new incoming tracks and old tracks
     public class Tracks
     {
         public  Track.Track New { get; set; }
         public Track.Track Old { get; set; }
 
     }
+
+    // Delegate for updating tracks via updatetrack event
+    public delegate void UpdateTrack(object sender, TrackUpdateEvent e);
+
+    public class TrackUpdateEvent
+    {
+
+    }
+
+
 }

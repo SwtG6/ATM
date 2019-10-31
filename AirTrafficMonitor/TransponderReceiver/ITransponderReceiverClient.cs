@@ -21,7 +21,7 @@ namespace AirTrafficMonitor.TransponderReceiverClient
     }
 
     public delegate void TransponderDataEvent(object o, RawTransponderDataEventArgs arg);
-    public interface ITransponderReceiver
+    public interface ITransponderReceiverClient
     {
         event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
 

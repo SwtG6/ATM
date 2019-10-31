@@ -11,15 +11,15 @@ using TransponderReceiver;
 namespace AirTrafficMonitor.TransponderReceiverClient
 {
 
-    public class TransponderReceiver : ITransponderReceiver
+    public class TransponderReceiver : ITransponderReceiverClient
     {
-        private ITransponderReceiver receiver;
+        private ITransponderReceiverClient receiver;
         private IDataFormat _dataFormat;
 
         public event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
 
 
-        public TransponderReceiver(ITransponderReceiver receiver, IDataFormat dataFormat)
+        public TransponderReceiver(ITransponderReceiverClient receiver, IDataFormat dataFormat)
         {
             // This will store the real or the fake transponder data receiver
             this.receiver = receiver;
