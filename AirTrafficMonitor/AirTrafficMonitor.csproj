@@ -47,6 +47,10 @@
     <Compile Include="ConditionLogger\IConditionLogger.cs" />
     <Compile Include="ConsoleLogger\ConsoleLogger.cs" />
     <Compile Include="ConsoleLogger\IConsoleLogger.cs" />
+    <Compile Include="ConsoleRenderer\ConsoleWrite.cs" />
+    <Compile Include="ConsoleRenderer\Plane.cs" />
+    <Compile Include="ConsoleRenderer\Program.cs" />
+    <Compile Include="ConsoleRenderer\transponderreceived.cs" />
     <Compile Include="Data\DataFormat.cs" />
     <Compile Include="Data\IDataFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
