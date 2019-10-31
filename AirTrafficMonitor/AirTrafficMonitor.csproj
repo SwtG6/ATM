@@ -47,6 +47,8 @@
     <Compile Include="ConditionLogger\IConditionLogger.cs" />
     <Compile Include="ConsoleLogger\ConsoleLogger.cs" />
     <Compile Include="ConsoleLogger\IConsoleLogger.cs" />
+    <Compile Include="Data\DataFormat.cs" />
+    <Compile Include="Data\IDataFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering.cs" />
     <Compile Include="Track.cs" />
