@@ -14,13 +14,10 @@ namespace Calculator.Data
 {
     public class DataFormat : IDataFormat
     {
-        public DataFormat()
-        {
-        }
 
-        public Track CreateTrack(string trackInfo)
+        public Track.Track CreateTrack(string trackInfo)
         {
-            Track track = new Track();
+            Track.Track track = new Track.Track();
 
             string[] trackInfoSplit = trackInfo.Split(';');
 
@@ -34,5 +31,6 @@ namespace Calculator.Data
 
             return track;
         }
+
     }
 }

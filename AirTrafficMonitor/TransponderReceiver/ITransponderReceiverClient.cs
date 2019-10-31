@@ -9,12 +9,12 @@ namespace Calculator.TransponderReceiver
 {
     public class RawTransponderDataEventArgs : EventArgs
     {
-        public RawTransponderDataEventArgs(List<string> transponderData)
+        public RawTransponderDataEventArgs(List<Track.Track> transponderData)
         {
             TransponderData = transponderData;
         }
 
-        public List<string> TransponderData { get; }
+        public List<Track.Track> TransponderData { get; }
     }
 
     public interface ITransponderReceiver

@@ -34,6 +34,5 @@ namespace Calculator.Track
 
             return t1.Tag.Equals(t2.Tag);
         }
-
     }
 }
