@@ -54,11 +54,11 @@ namespace AirTrafficMonitor.TrackHandler
             _tracks[trackIndex].New.HorizontalVelocity = Calculator.Calculator.GetCurrentVelocity(track1, track2);
         }
 
-        private void AddTrack(object sender, TransponderReceiver.TransponderDataEventArgs e)
+        private void AddTrack(object sender, TransponderReceiver.TransponderDataEventArgs arg)
         {
             _trackUpdate = new TrackUpdateEvent();
 
-            foreach (var track in e.tracks)
+            foreach (var track in arg.tracks)
             {
                 if (Calculator.Calculator.TrackIsInsideAirSpace(track))
                 {
@@ -84,9 +84,31 @@ namespace AirTrafficMonitor.TrackHandler
                 }
             }
 
+            ArePlanesColliding();
+
+            RaiseEvent?.Invoke(this, _trackUpdate);
         }
 
-
+        private void ArePlanesColliding()
+        {
+            for (int i = 0; i < _tracks.Count - 1; i++)
+            {
+                for (int j = i + 1; j < _tracks.Count; j++)
+                {
+                    if (Calculator.Calculator.AreTracksColliding(_tracks[i].New,_tracks[j].Old))
+                    {
+                        Tracks testTracks = new Tracks { New = _tracks[i].New, Old = _tracks[j].Old}
+                        if (!_conditionTracks.Contains(testTracks.GetHashCode()))
+                        {
+                            _trackUpdate.ListOfCollidingTracks.Add(testTracks);
+                            _conditionTracks.Add(testTracks.GetHashCode());
+                            _conditionLogger.LogTracks(testTracks);
+                        }
+                        
+                    }
+                }
+            }
+        }
 
         public event UpdateTrack RaiseEvent;
 
