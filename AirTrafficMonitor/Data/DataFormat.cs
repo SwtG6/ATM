@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AirTrafficMonitor.TrackHandler;
 using TransponderReceiver;
 
 // Raw-data arrives only separated by ';'
@@ -13,6 +14,12 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitor.Data
 {
+    public class TrackInAirspaceEvent : EventArgs
+    {
+        public List<Track.Track> tracks { get; set; }
+    }
+
+    public delegate void InformationReceivedHandler(object o, TrackInAirspaceEvent e);
 
     public class DataFormat : IDataFormat
     {
@@ -35,7 +42,7 @@ namespace AirTrafficMonitor.Data
                 Track.Track track = CreateTrack(data);
                 tempTracks.Add(track);
 
-                System.Console.WriteLine($"TransponderData {data}");
+                //System.Console.WriteLine($"TransponderData {data}");
             }
             if (TransponderDataReady != null)
             {

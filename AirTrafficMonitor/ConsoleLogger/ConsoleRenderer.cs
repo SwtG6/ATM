@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AirTrafficMonitor.ConsoleLogger;
 using AirTrafficMonitor.TrackHandler;
 
 namespace Calculator.ConsoleLogger
 {
-    class ConsoleRenderer
+    public class ConsoleRenderer
     {
         private ITrackHandler trackHandler;
+        private IConsoleLogger log;
 
         public ConsoleRenderer(ITrackHandler _trackHandler)
         {
@@ -18,13 +20,15 @@ namespace Calculator.ConsoleLogger
         }
         public void RenderTrackInfo(object source, TrackUpdateEvent e)
         {
-            Console.Clear();
+            //Console.Clear();
+            //log.ClearLog();
             foreach (var track in e.ListOfUpdatedTracks)
             {
-                Console.WriteLine("New Detection");
+
+                //Console.WriteLine("New Detection");
                 Console.WriteLine("Tag " + track.Tag);
-                Console.WriteLine("Current x-cord: {0},  y-cord: {1},  altitude: {2} ", track.XCoordinate, track.YCoordinate, track.Altitude );
-                Console.WriteLine("Current horizontal velocity in m/s: {0} and course in degrees: {1} ", track.HorizontalVelocity, track.CompassCourse);
+                //Console.WriteLine("Current x-cord: {0},  y-cord: {1},  altitude: {2} ", track.XCoordinate, track.YCoordinate, track.Altitude );
+                //Console.WriteLine("Current horizontal velocity in m/s: {0} and course in degrees: {1} ", track.HorizontalVelocity, track.CompassCourse);
             }
 
             foreach (var track in e.ListOfCollidingTracks)

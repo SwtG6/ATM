@@ -28,10 +28,10 @@ namespace AirTrafficMonitor.Calculator
         //Punkt 7 - current velocity
         public static double GetCurrentVelocity(Track.Track track1, Track.Track track2)
         {
-            double time = (track2.Timer - track1.Timer).TotalMilliseconds;
+            double time = (track2.Timer - track1.Timer).Seconds;
 
 
-            return GetDistance(track1, track2)/time/1000;
+            return GetDistance(track1, track2)/time;
         }
 
         public static double GetDistance(Track.Track track1, Track.Track track2)
