@@ -54,7 +54,7 @@ namespace AirTrafficMonitor.TrackHandler
             _tracks[trackIndex].New.HorizontalVelocity = Calculator.Calculator.GetCurrentVelocity(track1, track2);
         }
 
-        private void AddTrack(object sender, RawTransponderDataEventArgs e)
+        private void AddTrack(object sender, TransponderReceiver.TransponderDataEventArgs e)
         {
             _trackUpdate = new TrackUpdateEvent();
 
