@@ -8,7 +8,6 @@ using AirTrafficMonitor.TransponderReceiver;
 using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
-using RawTransponderDataEventArgs = AirTrafficMonitor.TransponderReceiver.RawTransponderDataEventArgs;
 
 namespace ATM.Test.Unit
 {
