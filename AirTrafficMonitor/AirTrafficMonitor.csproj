@@ -51,7 +51,6 @@
     <Compile Include="ConsoleLogger\ConsoleLogger.cs" />
     <Compile Include="ConsoleLogger\ConsoleRenderer.cs" />
     <Compile Include="ConsoleLogger\IConsoleLogger.cs" />
-    <Compile Include="ConsoleRenderer\ConsoleRenderer.cs" />
     <Compile Include="Data\DataFormat.cs" />
     <Compile Include="Data\IDataFormat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
