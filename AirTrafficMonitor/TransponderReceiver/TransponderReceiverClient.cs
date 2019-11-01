@@ -14,22 +14,26 @@ namespace AirTrafficMonitor.TransponderReceiver
 
     public class TransponderReceiverClient : ITransponderReceiverClient
     {
-        private ITransponderReceiver _receiver;
-        private IDataFormat _dataFormat;
+        private ITransponderReceiver receiver;
 
-        public event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
+        //private ITransponderReceiver _receiver;
+        //private IDataFormat _dataFormat;
+
+
+        public event EventHandler<TransponderDataEventArgs> TransponderDataReady;
 
 
         public TransponderReceiverClient(ITransponderReceiver receiver, IDataFormat dataFormat)
         {
             // This will store the real or the fake transponder data receiver
-            // this.receiver = receiver;
-            _receiver = receiver;
-            _dataFormat = dataFormat;
+            this.receiver = receiver;
+
+            //_receiver = receiver;
+            //_dataFormat = dataFormat;
 
             // Attach to the event of the real or the fake TDR
-            //this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
-            TransponderDataReady += ReceiverOnTransponderDataReady;
+            this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
+            //TransponderDataReady += ReceiverOnTransponderDataReady;
         }
 
         public void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
@@ -39,12 +43,14 @@ namespace AirTrafficMonitor.TransponderReceiver
             // Just display data
             foreach (var data in e.TransponderData)
             {
-                tempTracks.Add(_dataFormat.CreateTrack(data));
+                //tempTracks.Add(_dataFormat.CreateTrack(data));
+
+
                 System.Console.WriteLine($"TransponderData {data}");
             }
             if (TransponderDataReady != null)
             {
-                TransponderDataReady(this, new RawTransponderDataEventArgs { tracks = tempTracks });
+                TransponderDataReady(this, new TransponderDataEventArgs { tracks = tempTracks });
             }
 
         }
