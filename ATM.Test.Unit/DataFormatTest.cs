@@ -1,4 +1,5 @@
-﻿using NSubstitute;
+﻿using System;
+using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
 using AirTrafficMonitor.Data;
@@ -17,8 +18,10 @@ namespace ATM.Test.Unit
         public void setup()
         {
             _fakeTransponderReceiver = Substitute.For<ITransponderReceiver>();
-
+            
             UUT = new DataFormat(_fakeTransponderReceiver);
+
+            //new DateTime(2015, 10, 06, 21, 34, 56, 789);
         }
 
         [Test]
@@ -30,10 +33,9 @@ namespace ATM.Test.Unit
             Assert.That(testTrackData.XCoordinate, Is.EqualTo(39045));
             Assert.That(testTrackData.YCoordinate, Is.EqualTo(12932));
             Assert.That(testTrackData.Altitude, Is.EqualTo(14000));
-            //Assert.That(testTrackData.Timer, Is.EqualTo());
+            Assert.That(testTrackData.Timer, Is.EqualTo(new DateTime(2015, 10, 06, 21, 34, 56, 789)));
         }
     }
-
 }
 
 
