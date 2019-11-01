@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using AirTrafficMonitor.Track;
+using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using TransponderReceiver;
@@ -69,6 +71,39 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackAH), Is.EqualTo(false));
         }
 
+        [Test]
 
+        public void DistanceBetweenTracksTest()
+        {
+            Track testTrackDist1 = new Track();
+            testTrackDist1.XCoordinate = 20000;
+            testTrackDist1.YCoordinate = 50000;
+            testTrackDist1.Altitude = 10000;
+
+            Track testTrackDist2 = new Track();
+            testTrackDist2.XCoordinate = 50000;
+            testTrackDist2.YCoordinate = 50000;
+            testTrackDist2.Altitude = 10000;
+
+            Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(30000));
+        }
+
+
+
+        [Test]
+        public void TracksCollidingTest()
+        {
+            Track testTrack1 = new Track();
+            testTrack1.XCoordinate = 42000;
+            testTrack1.YCoordinate = 45000;
+            testTrack1.Altitude = 10000;
+
+            Track testTrack2 = new Track();
+            testTrack2.XCoordinate = 45000;
+            testTrack2.YCoordinate = 45000;
+            testTrack2.Altitude = 9900;
+
+            Assert.That(AreTracksColliding(testTrack1, testTrack2), Is.EqualTo(true));
+        }
     }
 }
