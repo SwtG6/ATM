@@ -17,7 +17,7 @@ namespace ATM.Test.Unit
     [TestFixture]
     class CalculatorTest
     {
-        [Test] // Test 1: Flyet indenfor det definerede airspace.
+        [Test] // Test 1: Flyet er indenfor det definerede airspace.
         public void TrackInsideAirspaceTest()
         {
             //List<Track> testTrack = new List<Track>();
@@ -103,7 +103,7 @@ namespace ATM.Test.Unit
             Assert.That(AreTracksColliding(testTrack1, testTrack2), Is.EqualTo(true));
         }
 
-        [Test]
+        [Test] // Test 7: Udregning af altitude afstanden mellem to placeringer.
         public void AltitudeDistanceTest()
         {
             Track testAltTrack1 = new Track();
@@ -115,7 +115,7 @@ namespace ATM.Test.Unit
             Assert.That(GetAltitudeDistance(testAltTrack1.Altitude, testAltTrack2.Altitude), Is.EqualTo(5000));
         }
 
-        [Test]
+        [Test] // Test 8: Udregning af forskellen i kurs mellem to placeringer.
         public void CurrentCourseTest()
         {
             Track testCourseTrack1 = new Track();
@@ -126,7 +126,7 @@ namespace ATM.Test.Unit
             testCourseTrack2.XCoordinate = 30000;
             testCourseTrack2.YCoordinate = 50000;
 
-            Assert.That(GetCurrentCourse(testCourseTrack1, testCourseTrack2), Is.EqualTo(10000));
+            Assert.That(GetCurrentCourse(testCourseTrack1, testCourseTrack2), Is.EqualTo(45));
         }
 
 
