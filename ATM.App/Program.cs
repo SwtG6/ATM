@@ -9,7 +9,7 @@ using AirTrafficMonitor.ConditionLogger;
 using AirTrafficMonitor.TransponderReceiver;
 using AirTrafficMonitor.Data;
 using AirTrafficMonitor.TrackHandler;
-using Calculator.ConsoleLogger;
+using AirTrafficMonitor.ConsoleLogger;
 using TransponderReceiver;
 
 

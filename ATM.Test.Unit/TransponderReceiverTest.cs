@@ -24,7 +24,7 @@ namespace ATM.Test.Unit
             // Make a fake Transponder Data Receiver
             _fakeTransponderReceiver = Substitute.For<ITransponderReceiver>();
             // Inject the fake TDR
-            _uut = new TransponderReceiverClient(_fakeTransponderReceiver);
+           // _uut = new TransponderReceiverClient(_fakeTransponderReceiver);
         }
 
         [Test]
