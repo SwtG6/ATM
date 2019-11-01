@@ -13,7 +13,6 @@ using AirTrafficMonitor.Track;
 
 namespace ATM.Test.Unit
 {
-
     public class TestTransponderReceiverClient
     {
         private ITransponderReceiver _fakeTransponderReceiver;

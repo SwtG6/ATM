@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AirTrafficMonitor.Data;
 using TransponderReceiver;
 
 namespace AirTrafficMonitor.TrackHandler
@@ -14,13 +15,13 @@ namespace AirTrafficMonitor.TrackHandler
         private List<Tracks> _tracks;
         private List<string> _trackTags;
         private List<int> _conditionTracks;
-        private ITransponderReceiverClient _transponderReceiverClient;
+        private IDataFormat _transponderReceiverClient;
         private IConditionLogger _conditionLogger;
         private TrackUpdateEvent _trackUpdate;
 
 
 
-        public TrackHandler(ITransponderReceiverClient TransponderReceiverClient, IConditionLogger ConditionLogger)
+        public TrackHandler(IDataFormat TransponderReceiverClient, IConditionLogger ConditionLogger)
         {
             _tracks = new List<Tracks>();
             _trackTags = new List<string>();
@@ -54,7 +55,7 @@ namespace AirTrafficMonitor.TrackHandler
             _tracks[trackIndex].New.HorizontalVelocity = Calculator.Calculator.GetCurrentVelocity(track1, track2);
         }
 
-        private void AddTrack(object sender, TransponderReceiver.TransponderDataEventArgs arg)
+        private void AddTrack(object sender, Data.TransponderDataEventArgs arg)
         {
             _trackUpdate = new TrackUpdateEvent();
 

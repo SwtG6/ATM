@@ -10,7 +10,7 @@ namespace ATM.Test.Unit
     class DataFormatTest
     {
         private ITransponderReceiver _fakeTransponderReceiver { get; set; }
-        private TransponderDataEventArgs dataFormatEventArgs { get; set; }
+        //private TransponderDataEventArgs dataFormatEventArgs { get; set; }
         private IDataFormat UUT { get; set; }
 
         [SetUp]
