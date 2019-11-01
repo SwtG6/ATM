@@ -16,22 +16,22 @@ namespace ATMApp
     {
         static void Main(string[] args)
         {
-            //TransponderReceiverFactory TransponderReceiverFactory = new TransponderReceiverFactory();
+            TransponderReceiverFactory TransponderReceiverFactory = new TransponderReceiverFactory();
 
-            //ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
+            ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
             IDataFormat dataFormat = new DataFormat();
 
-            //ITransponderReceiverClient TransponderReceiverClient =
-            //    new TransponderReceiverClient(TransponderReceiver, dataFormat);
+            ITransponderReceiverClient TransponderReceiverClient =
+                new TransponderReceiverClient(TransponderReceiver, dataFormat);
 
 
 
-            // Using the real transponder data receiver
-            var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
+            //    // Using the real transponder data receiver
+            //    var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
-            // Dependency injection with the real TDR
-            var system = new AirTrafficMonitor.TransponderReceiver.TransponderReceiverClient(receiver, dataFormat);
+            //    // Dependency injection with the real TDR
+            //    var system = new AirTrafficMonitor.TransponderReceiver.TransponderReceiverClient(receiver, dataFormat);
 
             // Let the real TDR execute in the background
             while (true)
