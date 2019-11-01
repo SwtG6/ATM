@@ -26,14 +26,14 @@ namespace AirTrafficMonitor.TrackHandler
             _conditionTracks = new List<int>();
             _transponderReceiverClient = TransponderReceiverClient;
             _conditionLogger = ConditionLogger;
-            TransponderReceiverClient.TransponderDataReady += _addTrack;
+            TransponderReceiverClient.TransponderDataReady += AddTrack;
         }
 
         private void AddNewTrack(Track.Track add)
         {
-            Tracks newtrack = new Tracks();
-            newtrack.New = add;
-            _tracks.Add(newtrack);
+            Tracks newTrack = new Tracks();
+            newTrack.New = add;
+            _tracks.Add(newTrack);
         }
 
         private void UpdateTrack(Track.Track upTrack)
