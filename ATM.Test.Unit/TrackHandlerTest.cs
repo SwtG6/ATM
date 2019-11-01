@@ -12,7 +12,7 @@ namespace ATM.Test.Unit
     [TestFixture]
     class TrackHandlerTest
     {
-        private List<Track> 
+        private List<Track> tracks = new List<Track>();
 
     }
 }
