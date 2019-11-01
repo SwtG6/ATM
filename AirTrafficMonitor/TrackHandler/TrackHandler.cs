@@ -97,7 +97,7 @@ namespace AirTrafficMonitor.TrackHandler
                 {
                     if (Calculator.Calculator.AreTracksColliding(_tracks[i].New,_tracks[j].Old))
                     {
-                        Tracks testTracks = new Tracks { New = _tracks[i].New, Old = _tracks[j].Old}
+                        Tracks testTracks = new Tracks {New = _tracks[i].New, Old = _tracks[j].Old};
                         if (!_conditionTracks.Contains(testTracks.GetHashCode()))
                         {
                             _trackUpdate.ListOfCollidingTracks.Add(testTracks);

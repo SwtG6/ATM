@@ -13,8 +13,35 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitor.Data
 {
+
     public class DataFormat : IDataFormat
     {
+        private ITransponderReceiver receiver;
+
+        public event EventHandler<TransponderDataEventArgs> TransponderDataReady;
+
+        public DataFormat(ITransponderReceiver receiver)
+        {
+            this.receiver = receiver;
+            this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
+        }
+
+        public void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
+        {
+            List<Track.Track> tempTracks = new List<Track.Track>();
+
+            foreach (var data in e.TransponderData)
+            {
+                Track.Track track = CreateTrack(data);
+                tempTracks.Add(track);
+
+                System.Console.WriteLine($"TransponderData {data}");
+            }
+            if (TransponderDataReady != null)
+            {
+                TransponderDataReady(this, new TransponderDataEventArgs { tracks = tempTracks });
+            }
+        }
 
         public Track.Track CreateTrack(string trackInfo)
         {
@@ -31,7 +58,29 @@ namespace AirTrafficMonitor.Data
             track.Timer = DateTime.ParseExact(trackInfoSplit[4], DateFormat, CultureInfo.InvariantCulture);
 
             return track;
-        }
 
+        }
     }
+
+    //public class DataFormat : IDataFormat
+    //{
+
+    //    public Track.Track CreateTrack(string trackInfo)
+    //    {
+    //        Track.Track track = new Track.Track();
+
+    //        string[] trackInfoSplit = trackInfo.Split(';');
+
+    //        track.Tag = trackInfoSplit[0];
+    //        track.XCoordinate = Convert.ToInt32(trackInfoSplit[1]);
+    //        track.YCoordinate = Convert.ToInt32(trackInfoSplit[2]);
+    //        track.Altitude = Convert.ToInt32(trackInfoSplit[3]);
+
+    //        string DateFormat = "yyyyMMddHHmmssfff";
+    //        track.Timer = DateTime.ParseExact(trackInfoSplit[4], DateFormat, CultureInfo.InvariantCulture);
+
+    //        return track;
+    //    }
+
+    //}
 }

@@ -9,7 +9,7 @@ namespace AirTrafficMonitor.TransponderReceiver
 {
     public class TransponderDataEventArgs : EventArgs
     {
-        public List<Track.Track> tracks { get; set; }
+        public List<Track.Track> tracks = new List<Track.Track>();
 
 
         //public RawTransponderDataEventArgs(List<string> transponderData)
@@ -18,7 +18,7 @@ namespace AirTrafficMonitor.TransponderReceiver
         //}
 
 
-        public List<string> TransponderData { get; }
+        //public List<string> TransponderData { get; }
     }
 
     //public delegate void TransponderDataEvent(object sender, RawTransponderDataEventArgs e);
@@ -27,5 +27,7 @@ namespace AirTrafficMonitor.TransponderReceiver
         event EventHandler<TransponderDataEventArgs> TransponderDataReady;
 
         void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e);
+
+        Track.Track CreateTrack(string trackInfo);
     }
 }
