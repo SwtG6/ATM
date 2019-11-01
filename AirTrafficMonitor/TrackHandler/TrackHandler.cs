@@ -29,19 +29,61 @@ namespace AirTrafficMonitor.TrackHandler
             TransponderReceiverClient.TransponderDataReady += _addTrack;
         }
 
-        private void _addTrack(object sender, RawTransponderDataEventArgs e)
+        private void AddNewTrack(Track.Track add)
+        {
+            Tracks newtrack = new Tracks();
+            newtrack.New = add;
+            _tracks.Add(newtrack);
+        }
+
+        private void UpdateTrack(Track.Track upTrack)
+        {
+            int trackIndex = _tracks.FindIndex(t => t.New == upTrack);
+
+            _tracks[trackIndex].Old = _tracks[trackIndex].New;
+
+            _tracks[trackIndex].New = upTrack;
+
+            //calculating new course and velocity
+            Track.Track track1 = _tracks[trackIndex].Old;
+            Track.Track track2 = _tracks[trackIndex].New;
+
+            _tracks[trackIndex].New.CompassCourse = Calculator.Calculator.GetCurrentCourse(track1, track2);
+
+            _tracks[trackIndex].New.HorizontalVelocity = Calculator.Calculator.GetCurrentVelocity(track1, track2);
+        }
+
+        private void AddTrack(object sender, RawTransponderDataEventArgs e)
         {
             _trackUpdate = new TrackUpdateEvent();
 
+            foreach (var track in e.tracks)
+            {
+                if (Calculator.Calculator.TrackIsInsideAirSpace(track))
+                {
+                    if (!_trackTags.Contains(track.Tag))
+                    {
+                        _trackTags.Add(track.Tag);
+                        AddNewTrack(track);
+                        _trackUpdate.ListOfNewTracks.Add(track);
+                    }
+                    else
+                    {
+                        UpdateTrack(track);
+                        _trackUpdate.ListOfUpdatedTracks.Add(track);
+                    }
+                }
+                else
+                {
+                    if (_trackTags.Contains(track.Tag))
+                    {
+                        _trackTags.Remove(track.Tag);
+                        _tracks.Remove(_tracks.First(t => t.New.Tag == track.Tag));
+                    }
+                }
+            }
 
         }
-
-
-
-
-
-
-
 
 
 
