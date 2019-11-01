@@ -17,7 +17,7 @@ namespace ATM.Test.Unit
     [TestFixture]
     class CalculatorTest
     {
-        [Test]
+        [Test] // Test 1: Flyet indenfor det definerede airspace.
         public void TrackInsideAirspaceTest()
         {
             //List<Track> testTrack = new List<Track>();
@@ -32,7 +32,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(true));
         }
 
-        [Test]
+        [Test] //Test 2: Flyets koordinator måler for lavt på X-aksen, og er derfor ikke inde i vores airspace.
         public void TrackOutsideXCoordinateLowAirspaceTest()
         {
             Track testTrackXL = new Track();
@@ -45,7 +45,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackXL), Is.EqualTo(false));
         }
 
-        [Test]
+        [Test] //Test 3: Flyets koordinator måler for lavt på Y-aksen, og er derfor ikke inde i vores airspace.
         public void TrackOutsideYCoordinateLowAirspaceTest()
         {
             Track testTrackYL = new Track();
@@ -58,7 +58,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
         }
 
-        [Test]
+        [Test] //Test 4: Flyets koordinator måler for højt på altitude, og er derfor ikke inde i vores airspace.
         public void TrackOutsideAltitudeHighAirspaceTest()
         {
             Track testTrackAH = new Track();
@@ -71,8 +71,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackAH), Is.EqualTo(false));
         }
 
-        [Test]
-
+        [Test] // Test 5: Testen om vores GetDistance-funktion virker efter hensigten.
         public void DistanceBetweenTracksTest()
         {
             Track testTrackDist1 = new Track();
@@ -88,9 +87,7 @@ namespace ATM.Test.Unit
             Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(30000));
         }
 
-
-
-        [Test]
+        [Test] // Test 6: Tester om 2 fly er ved at kollidere, baseret på vores GetDistance-funktion.
         public void TracksCollidingTest()
         {
             Track testTrack1 = new Track();
@@ -105,5 +102,33 @@ namespace ATM.Test.Unit
 
             Assert.That(AreTracksColliding(testTrack1, testTrack2), Is.EqualTo(true));
         }
+
+        [Test]
+
+        public void AltitudeDistanceTest()
+        {
+            Track testAltTrack1 = new Track();
+            testAltTrack1.Altitude = 10000;
+
+            Track testAltTrack2 = new Track();
+            testAltTrack2.Altitude = 15000;
+
+            Assert.That(GetAltitudeDistance(testAltTrack1.Altitude, testAltTrack2.Altitude), Is.EqualTo(5000));
+        }
+
+
+        //[Test]
+        //public void TrackVelocityTest()
+        //{
+        //    Track testVelTrack1 = new Track();
+        //    //DateTime testVelTime1 = new DateTime(2015,10,06,21,34,56,789);
+
+        //    testVelTrack1.Timer = DateTime.Today;
+
+        //    Track testVelTrack2 = new Track();
+        //    testVelTrack1.Timer 
+
+        //    Assert.That(GetCurrentVelocity(testVelTrack1, testVelTrack2), Is.EqualTo(4));
+        //}
     }
 }
