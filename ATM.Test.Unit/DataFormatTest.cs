@@ -26,7 +26,7 @@ namespace ATM.Test.Unit
             //new DateTime(2015, 10, 06, 21, 34, 56, 789);
         }
 
-        [Test]
+        [Test] // Test af at modtaget Track-data bliver formatteret korrekt.
         public void TrackDataFormattedTest()
         {
             // Setup test data
@@ -40,7 +40,7 @@ namespace ATM.Test.Unit
             Assert.That(testTrackData.Timer, Is.EqualTo(new DateTime(2015, 10, 06, 21, 34, 56, 789)));
         }
 
-        [Test]
+        [Test] // Test af hvorvidt der modtages et Event når funktionen kaldes.
         public void TransponderDataEventArgsTest()
         {
             // Setup test data
