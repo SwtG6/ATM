@@ -104,7 +104,6 @@ namespace ATM.Test.Unit
         }
 
         [Test]
-
         public void AltitudeDistanceTest()
         {
             Track testAltTrack1 = new Track();
@@ -114,6 +113,20 @@ namespace ATM.Test.Unit
             testAltTrack2.Altitude = 15000;
 
             Assert.That(GetAltitudeDistance(testAltTrack1.Altitude, testAltTrack2.Altitude), Is.EqualTo(5000));
+        }
+
+        [Test]
+        public void CurrentCourseTest()
+        {
+            Track testCourseTrack1 = new Track();
+            testCourseTrack1.XCoordinate = 20000;
+            testCourseTrack1.YCoordinate = 40000;
+
+            Track testCourseTrack2 = new Track();
+            testCourseTrack2.XCoordinate = 30000;
+            testCourseTrack2.YCoordinate = 50000;
+
+            Assert.That(GetCurrentCourse(testCourseTrack1, testCourseTrack2), Is.EqualTo(10000));
         }
 
 
