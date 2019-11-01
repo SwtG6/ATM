@@ -68,26 +68,4 @@ namespace AirTrafficMonitor.Data
 
         }
     }
-
-    //public class DataFormat : IDataFormat
-    //{
-
-    //    public Track.Track CreateTrack(string trackInfo)
-    //    {
-    //        Track.Track track = new Track.Track();
-
-    //        string[] trackInfoSplit = trackInfo.Split(';');
-
-    //        track.Tag = trackInfoSplit[0];
-    //        track.XCoordinate = Convert.ToInt32(trackInfoSplit[1]);
-    //        track.YCoordinate = Convert.ToInt32(trackInfoSplit[2]);
-    //        track.Altitude = Convert.ToInt32(trackInfoSplit[3]);
-
-    //        string DateFormat = "yyyyMMddHHmmssfff";
-    //        track.Timer = DateTime.ParseExact(trackInfoSplit[4], DateFormat, CultureInfo.InvariantCulture);
-
-    //        return track;
-    //    }
-
-    //}
 }
