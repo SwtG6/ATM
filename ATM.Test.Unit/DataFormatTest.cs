@@ -27,6 +27,10 @@ namespace ATM.Test.Unit
             var testTrackData = UUT.CreateTrack("ATR423;39045;12932;14000;20151006213456789");
 
             Assert.That(testTrackData.Tag, Is.EqualTo("ATR423"));
+            Assert.That(testTrackData.XCoordinate, Is.EqualTo(39045));
+            Assert.That(testTrackData.YCoordinate, Is.EqualTo(12932));
+            Assert.That(testTrackData.Altitude, Is.EqualTo(14000));
+            //Assert.That(testTrackData.Timer, Is.EqualTo());
         }
     }
 
