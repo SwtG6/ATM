@@ -15,7 +15,6 @@ namespace ATM.Test.Unit
     [TestFixture]
     class CalculatorTest
     {
-
         [Test]
         public void TrackInsideAirspaceTest()
         {
@@ -34,40 +33,42 @@ namespace ATM.Test.Unit
         [Test]
         public void TrackOutsideXCoordinateLowAirspaceTest()
         {
-            Track testTrack = new Track();
+            Track testTrackXL = new Track();
 
-            testTrack.XCoordinate = 2000;
-            testTrack.YCoordinate = 45000;
-            testTrack.Altitude = 15000;
+            testTrackXL.XCoordinate = 2000;
+            testTrackXL.YCoordinate = 45000;
+            testTrackXL.Altitude = 15000;
             //result = false
 
-            Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(false));
+            Assert.That(TrackIsInsideAirSpace(testTrackXL), Is.EqualTo(false));
         }
 
-        //[Test]
-        //public void TrackOutsideYCoordinateLowAirspaceTest()
-        //{
-        //    Track testTrack = new Track();
+        [Test]
+        public void TrackOutsideYCoordinateLowAirspaceTest()
+        {
+            Track testTrackYL = new Track();
 
-        //    testTrack.XCoordinate = 20000;
-        //    testTrack.YCoordinate = 4500;
-        //    testTrack.Altitude = 15000;
-        //    //result = false
+            testTrackYL.XCoordinate = 20000;
+            testTrackYL.YCoordinate = 4500;
+            testTrackYL.Altitude = 15000;
+            //result = false
 
-        //    Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(false));
-        //}
+            Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
+        }
 
-        //[Test]
-        //public void TrackOutsideXAltitudeHighAirspaceTest()
-        //{
-        //    Track testTrack = new Track();
+        [Test]
+        public void TrackOutsideAltitudeHighAirspaceTest()
+        {
+            Track testTrackAH = new Track();
 
-        //    testTrack.XCoordinate = 2000;
-        //    testTrack.YCoordinate = 45000;
-        //    testTrack.Altitude = 150000;
-        //    //result = false
+            testTrackAH.XCoordinate = 2000;
+            testTrackAH.YCoordinate = 45000;
+            testTrackAH.Altitude = 150000;
+            //result = false
 
-        //    Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(false));
-        //}
+            Assert.That(TrackIsInsideAirSpace(testTrackAH), Is.EqualTo(false));
+        }
+
+
     }
 }
