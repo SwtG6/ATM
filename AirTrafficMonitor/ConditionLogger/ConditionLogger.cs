@@ -18,7 +18,7 @@ namespace AirTrafficMonitor.ConditionLogger
         // if the file already exists it just instantiates the List of Tracks
         public ConditionLogger()
         {
-            Path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Log.txt";
+            Path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Log.txt";
             if (!File.Exists(Path))
             {
                 var FilePath = File.Create(Path);

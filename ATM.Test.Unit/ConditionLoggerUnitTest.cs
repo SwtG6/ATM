@@ -23,7 +23,7 @@ namespace ATM.Test.Unit
         public void Setup()
         {
             uut = new ConditionLogger();
-            Path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            Path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         }
 
         // Clear Log functionality will be necessary to reset the file that is tested on.
@@ -38,8 +38,7 @@ namespace ATM.Test.Unit
             Assert.That(File.Exists(Path + @"\LogFile.txt"), Is.True);
         }
 
-
-
+        
         [TestCase("track1")] // test to see if what we write in the LogFile is actually written
         public void TestWriteToLogFile(string track1)
         {
