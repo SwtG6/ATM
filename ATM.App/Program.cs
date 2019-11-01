@@ -16,14 +16,14 @@ namespace ATMApp
     {
         static void Main(string[] args)
         {
-            TransponderReceiverFactory TransponderReceiverFactory = new TransponderReceiverFactory();
+            //TransponderReceiverFactory TransponderReceiverFactory = new TransponderReceiverFactory();
 
-            ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
+            //ITransponderReceiver TransponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
 
             IDataFormat dataFormat = new DataFormat();
 
-            ITransponderReceiverClient TransponderReceiverClient =
-                new TransponderReceiverClient(TransponderReceiver, dataFormat);
+            //ITransponderReceiverClient TransponderReceiverClient =
+            //    new TransponderReceiverClient(TransponderReceiver, dataFormat);
 
 
 

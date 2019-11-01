@@ -14,7 +14,7 @@ namespace AirTrafficMonitor.TransponderReceiver
 
     public class TransponderReceiverClient : ITransponderReceiverClient
     {
-        private ITransponderReceiver receiver;
+        private ITransponderReceiver _receiver;
         private IDataFormat _dataFormat;
 
         public event EventHandler<RawTransponderDataEventArgs> TransponderDataReady;
@@ -23,7 +23,8 @@ namespace AirTrafficMonitor.TransponderReceiver
         public TransponderReceiverClient(ITransponderReceiver receiver, IDataFormat dataFormat)
         {
             // This will store the real or the fake transponder data receiver
-            this.receiver = receiver;
+            // this.receiver = receiver;
+            _receiver = receiver;
             _dataFormat = dataFormat;
 
             // Attach to the event of the real or the fake TDR
@@ -39,50 +40,15 @@ namespace AirTrafficMonitor.TransponderReceiver
             foreach (var data in e.TransponderData)
             {
                 tempTracks.Add(_dataFormat.CreateTrack(data));
-                System.Console.WriteLine($"Transponderdata {data}");
+                System.Console.WriteLine($"TransponderData {data}");
             }
             if (TransponderDataReady != null)
             {
-                TransponderDataReady(this, new RawTransponderDataEventArgs{tracks = tempTracks});
+                TransponderDataReady(this, new RawTransponderDataEventArgs { tracks = tempTracks });
             }
 
         }
 
-
-
-
-        ////private ITransponderReceiver dataReceiver;
-        ////private IDataFormat _dataFormatter;
-
-        ////public event RawTransponderDataEventArgs TransponderDataReady;
-
-        ////public TransponderReceiver(ITransponderReceiver dataReceiver, IDataFormat dataFormatter)
-        ////{
-        ////    this.dataReceiver = dataReceiver;
-        ////    _dataFormatter = dataFormatter;
-
-        ////    this.dataReceiver.TransponderDataReady += HandleTransponderData;
-        ////}
-
-        //public void HandleTransponderData(object o, TransponderDataEvent arg)
-        //{
-        //    List<Track.Track> tempTracks = new List<Track.Track>();
-
-        //    //var list = arg.TransponderData.Select(track => _dataFormatter.CreateTrack(track)).ToList();
-
-        //    foreach (var data in arg.TransponderData)
-        //    {
-        //        tempTracks.Add(_dataFormatter.CreateTrack(data));
-
-        //        //list.Add(_dataFormatter.CreateTrack(transponderData));
-        //    }
-
-        //    if (TransponderDataReady != null)
-        //    {
-        //        TransponderDataReady(this, new TransponderDataEvent{tracks = tempTracks});
-        //    }
-
-        //}
 
     }
 
