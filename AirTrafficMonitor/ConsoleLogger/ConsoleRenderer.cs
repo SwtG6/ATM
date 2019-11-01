@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AirTrafficMonitor.TrackHandler;
 
-namespace Calculator.ConsoleLogger
+namespace AirTrafficMonitor.ConsoleLogger
 {
     public class ConsoleRenderer
     {
