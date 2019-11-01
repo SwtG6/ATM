@@ -36,6 +36,7 @@ namespace AirTrafficMonitor.Calculator
 
         public static double GetDistance(Track.Track track1, Track.Track track2)
         {
+            // for some reason our application runs and then arrives to this point (to be specific - Track.Track track2 returns a null pointer and crashes the application)
             var deltaX = track2.XCoordinate - track1.XCoordinate;
             var deltaY = track2.YCoordinate - track1.YCoordinate;
 
