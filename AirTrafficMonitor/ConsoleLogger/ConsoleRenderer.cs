@@ -7,7 +7,7 @@ using AirTrafficMonitor.TrackHandler;
 
 namespace Calculator.ConsoleLogger
 {
-    class ConsoleRenderer
+    public class ConsoleRenderer
     {
         private ITrackHandler trackHandler;
 

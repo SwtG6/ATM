@@ -22,6 +22,8 @@ namespace AirTrafficMonitor.Track
         // Matching of tags to make sure our tracks never have the same Tag.
         // Attempt 1 - with added != operator (Can't have one without the other)
 
+
+        // 0 references, but is a requirrement to overwrite the == operator
         public static bool operator !=(Track t1, Track t2)
         {
             if (t1 is null)
