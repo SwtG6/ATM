@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TransponderReceiver;
 
 // Raw-data arrives only separated by ';'
 // as so: “ATR423;39045;12932;14000;20151006213456789”

@@ -26,7 +26,9 @@ namespace AirTrafficMonitor.TrackHandler
 
     public class TrackUpdateEvent
     {
-
+        public List<Track.Track> ListOfNewTracks { get; set; } = new List<Track.Track>();
+        public List<Track.Track> ListOfUpdatedTracks { get; set; } = new List<Track.Track>();
+        public List<Tracks> ListOfCollidingTracks { get; set; } = new List<Tracks>();
     }
 
 
