@@ -44,31 +44,30 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(false));
         }
 
-        [Test]
-        public void TrackOutsideYCoordinateLowAirspaceTest()
-        {
-            Track testTrack = new Track();
+        //[Test]
+        //public void TrackOutsideYCoordinateLowAirspaceTest()
+        //{
+        //    Track testTrack = new Track();
 
-            testTrack.XCoordinate = 20000;
-            testTrack.YCoordinate = 4500;
-            testTrack.Altitude = 15000;
-            //result = false
+        //    testTrack.XCoordinate = 20000;
+        //    testTrack.YCoordinate = 4500;
+        //    testTrack.Altitude = 15000;
+        //    //result = false
 
-            Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(false));
-        }
+        //    Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(false));
+        //}
 
-        [Test]
-        public void TrackOutsideXAltitudeHighAirspaceTest()
-        {
-            Track testTrack = new Track();
+        //[Test]
+        //public void TrackOutsideXAltitudeHighAirspaceTest()
+        //{
+        //    Track testTrack = new Track();
 
-            testTrack.XCoordinate = 2000;
-            testTrack.YCoordinate = 45000;
-            testTrack.Altitude = 150000;
-            //result = false
+        //    testTrack.XCoordinate = 2000;
+        //    testTrack.YCoordinate = 45000;
+        //    testTrack.Altitude = 150000;
+        //    //result = false
 
-            Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(false));
-        }
-
+        //    Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(false));
+        //}
     }
 }
