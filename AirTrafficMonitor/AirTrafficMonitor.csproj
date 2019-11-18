@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator\Calculator.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="ConditionLogger\ConditionLogger.cs" />
     <Compile Include="ConditionLogger\IConditionLogger.cs" />
     <Compile Include="ConsoleLogger\ConsoleRenderer.cs" />
