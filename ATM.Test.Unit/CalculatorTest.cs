@@ -17,27 +17,93 @@ namespace ATM.Test.Unit
     [TestFixture]
     class CalculatorTest
     {
-        [Test] // Test 1: Flyet er indenfor det definerede airspace.
-        public void TrackInsideAirspaceTest()
+        #region Inside Airspace BVA Tests 
+
+        [Test] // Test 1: Flyet er indenfor det definerede airspace. x(nom)
+        public void TrackInsideAirspaceTestNom()
         {
             //List<Track> testTrack = new List<Track>();
 
             Track testTrack = new Track();
 
-            testTrack.XCoordinate = 20000;
+            testTrack.XCoordinate = 30000;
             testTrack.YCoordinate = 45000;
-            testTrack.Altitude = 15000;
+            testTrack.Altitude = 10000;
             //result = true
 
             Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(true));
         }
 
-        [Test] //Test 2: Flyets koordinator måler for lavt på X-aksen, og er derfor ikke inde i vores airspace.
+        [Test] // Test 2: Flyet er indenfor det definerede airspace. x(min+) på X- og Y-akse.
+        public void TrackInsideAirspaceTestXYMinPlus()
+        {
+            //List<Track> testTrack = new List<Track>();
+
+            Track testTrack = new Track();
+
+            testTrack.XCoordinate = 11000;
+            testTrack.YCoordinate = 11000;
+            testTrack.Altitude = 10000;
+            //result = true
+
+            Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(true));
+        }
+
+        [Test] // Test 3: Flyet er indenfor det definerede airspace. x(min) på X- og Y-akse.
+        public void TrackInsideAirspaceTestXYMin()
+        {
+            //List<Track> testTrack = new List<Track>();
+
+            Track testTrack = new Track();
+
+            testTrack.XCoordinate = 10000;
+            testTrack.YCoordinate = 10000;
+            testTrack.Altitude = 10000;
+            //result = true
+
+            Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(true));
+        }
+
+        [Test] // Test 4: Flyet er indenfor det definerede airspace. x(max-) på X- og Y-akse.
+        public void TrackInsideAirspaceTestXYMaxMinus()
+        {
+            //List<Track> testTrack = new List<Track>();
+
+            Track testTrack = new Track();
+
+            testTrack.XCoordinate = 89000;
+            testTrack.YCoordinate = 89000;
+            testTrack.Altitude = 10000;
+            //result = true
+
+            Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(true));
+        }
+
+        [Test] // Test 5: Flyet er indenfor det definerede airspace. x(max) på X- og Y-akse.
+        public void TrackInsideAirspaceTestXYMax()
+        {
+            //List<Track> testTrack = new List<Track>();
+
+            Track testTrack = new Track();
+
+            testTrack.XCoordinate = 90000;
+            testTrack.YCoordinate = 90000;
+            testTrack.Altitude = 10000;
+            //result = true
+
+            Assert.That(TrackIsInsideAirSpace(testTrack), Is.EqualTo(true));
+        }
+
+        #endregion Inside Airspace BVA Tests
+
+        #region Outside Airspace Tests
+
+        [Test] //Test 6: Flyets koordinator måler for lavt på X-aksen, og er derfor ikke inde i vores airspace.
         public void TrackOutsideXCoordinateLowAirspaceTest()
         {
             Track testTrackXL = new Track();
 
-            testTrackXL.XCoordinate = 2000;
+            testTrackXL.XCoordinate = 9000;
             testTrackXL.YCoordinate = 45000;
             testTrackXL.Altitude = 15000;
             //result = false
@@ -45,31 +111,101 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackXL), Is.EqualTo(false));
         }
 
-        [Test] //Test 3: Flyets koordinator måler for lavt på Y-aksen, og er derfor ikke inde i vores airspace.
+        [Test] //Test 7: Flyets koordinator måler for lavt på Y-aksen, og er derfor ikke inde i vores airspace.
         public void TrackOutsideYCoordinateLowAirspaceTest()
         {
             Track testTrackYL = new Track();
 
             testTrackYL.XCoordinate = 20000;
-            testTrackYL.YCoordinate = 4500;
+            testTrackYL.YCoordinate = 9000;
             testTrackYL.Altitude = 15000;
             //result = false
 
             Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
         }
 
-        [Test] //Test 4: Flyets koordinator måler for højt på altitude, og er derfor ikke inde i vores airspace.
+        [Test] //Test 7: Flyets koordinator måler for lavt på X- og Y-aksen, og er derfor ikke inde i vores airspace.
+        public void TrackOutsideXYCoordinateLowAirspaceTest()
+        {
+            Track testTrackYL = new Track();
+
+            testTrackYL.XCoordinate = 9900;
+            testTrackYL.YCoordinate = 9900;
+            testTrackYL.Altitude = 15000;
+            //result = false
+
+            Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
+        }
+
+        [Test] //Test 8: Flyets koordinator måler for højtt på X-aksen, og er derfor ikke inde i vores airspace.
+        public void TrackOutsideXCoordinateHighAirspaceTest()
+        {
+            Track testTrackXL = new Track();
+
+            testTrackXL.XCoordinate = 91000;
+            testTrackXL.YCoordinate = 45000;
+            testTrackXL.Altitude = 15000;
+            //result = false
+
+            Assert.That(TrackIsInsideAirSpace(testTrackXL), Is.EqualTo(false));
+        }
+
+        [Test] //Test 9: Flyets koordinator måler for højt på Y-aksen, og er derfor ikke inde i vores airspace.
+        public void TrackOutsideYCoordinateHighAirspaceTest()
+        {
+            Track testTrackYL = new Track();
+
+            testTrackYL.XCoordinate = 20000;
+            testTrackYL.YCoordinate = 91000;
+            testTrackYL.Altitude = 15000;
+            //result = false
+
+            Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
+        }
+
+        [Test] //Test 10: Flyets koordinator måler for højt på X- og Y-aksen, og er derfor ikke inde i vores airspace.
+        public void TrackOutsideXYCoordinateHighAirspaceTest()
+        {
+            Track testTrackYL = new Track();
+
+            testTrackYL.XCoordinate = 90500;
+            testTrackYL.YCoordinate = 90500;
+            testTrackYL.Altitude = 15000;
+            //result = false
+
+            Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
+        }
+
+
+        [Test] //Test 11: Flyets koordinator måler for højt på altitude, og er derfor ikke inde i vores airspace.
         public void TrackOutsideAltitudeHighAirspaceTest()
         {
             Track testTrackAH = new Track();
 
-            testTrackAH.XCoordinate = 2000;
+            testTrackAH.XCoordinate = 20000;
             testTrackAH.YCoordinate = 45000;
-            testTrackAH.Altitude = 150000;
+            testTrackAH.Altitude = 21000;
             //result = false
 
             Assert.That(TrackIsInsideAirSpace(testTrackAH), Is.EqualTo(false));
         }
+
+        [Test] //Test 12: Flyets koordinator måler for lavt på altitude, og er derfor ikke inde i vores airspace.
+        public void TrackOutsideAltitudeLoWAirspaceTest()
+        {
+            Track testTrackAH = new Track();
+
+            testTrackAH.XCoordinate = 20000;
+            testTrackAH.YCoordinate = 45000;
+            testTrackAH.Altitude = 400;
+            //result = false
+
+            Assert.That(TrackIsInsideAirSpace(testTrackAH), Is.EqualTo(false));
+        }
+
+        #endregion Outside Airspace Tests
+
+        #region GetDistance Test
 
         [Test] // Test 5: Testen om vores GetDistance-funktion virker efter hensigten.
         public void DistanceBetweenTracksTest()
@@ -87,6 +223,10 @@ namespace ATM.Test.Unit
             Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(30000));
         }
 
+        #endregion GetDistance Test
+
+        #region Collision Test
+
         [Test] // Test 6: Tester om 2 fly er ved at kollidere, baseret på vores GetDistance-funktion.
         public void TracksCollidingTest()
         {
@@ -102,6 +242,10 @@ namespace ATM.Test.Unit
 
             Assert.That(AreTracksColliding(testTrack1, testTrack2), Is.EqualTo(true));
         }
+
+        #endregion Collision Test
+
+
 
         [Test] // Test 7: Udregning af altitude afstanden mellem to placeringer.
         public void AltitudeDistanceTest()
