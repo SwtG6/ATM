@@ -124,7 +124,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
         }
 
-        [Test] //Test 7: Flyets koordinator måler for lavt på X- og Y-aksen, og er derfor ikke inde i vores airspace.
+        [Test] //Test 8: Flyets koordinator måler for lavt på X- og Y-aksen, og er derfor ikke inde i vores airspace.
         public void TrackOutsideXYCoordinateLowAirspaceTest()
         {
             Track testTrackYL = new Track();
@@ -137,7 +137,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
         }
 
-        [Test] //Test 8: Flyets koordinator måler for højtt på X-aksen, og er derfor ikke inde i vores airspace.
+        [Test] //Test 9: Flyets koordinator måler for højtt på X-aksen, og er derfor ikke inde i vores airspace.
         public void TrackOutsideXCoordinateHighAirspaceTest()
         {
             Track testTrackXL = new Track();
@@ -150,7 +150,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackXL), Is.EqualTo(false));
         }
 
-        [Test] //Test 9: Flyets koordinator måler for højt på Y-aksen, og er derfor ikke inde i vores airspace.
+        [Test] //Test 10: Flyets koordinator måler for højt på Y-aksen, og er derfor ikke inde i vores airspace.
         public void TrackOutsideYCoordinateHighAirspaceTest()
         {
             Track testTrackYL = new Track();
@@ -163,7 +163,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackYL), Is.EqualTo(false));
         }
 
-        [Test] //Test 10: Flyets koordinator måler for højt på X- og Y-aksen, og er derfor ikke inde i vores airspace.
+        [Test] //Test 11: Flyets koordinator måler for højt på X- og Y-aksen, og er derfor ikke inde i vores airspace.
         public void TrackOutsideXYCoordinateHighAirspaceTest()
         {
             Track testTrackYL = new Track();
@@ -177,7 +177,7 @@ namespace ATM.Test.Unit
         }
 
 
-        [Test] //Test 11: Flyets koordinator måler for højt på altitude, og er derfor ikke inde i vores airspace.
+        [Test] //Test 12: Flyets koordinator måler for højt på altitude, og er derfor ikke inde i vores airspace.
         public void TrackOutsideAltitudeHighAirspaceTest()
         {
             Track testTrackAH = new Track();
@@ -190,7 +190,7 @@ namespace ATM.Test.Unit
             Assert.That(TrackIsInsideAirSpace(testTrackAH), Is.EqualTo(false));
         }
 
-        [Test] //Test 12: Flyets koordinator måler for lavt på altitude, og er derfor ikke inde i vores airspace.
+        [Test] //Test 13: Flyets koordinator måler for lavt på altitude, og er derfor ikke inde i vores airspace.
         public void TrackOutsideAltitudeLoWAirspaceTest()
         {
             Track testTrackAH = new Track();
@@ -207,8 +207,8 @@ namespace ATM.Test.Unit
 
         #region GetDistance Test
 
-        [Test] // Test 5: Testen om vores GetDistance-funktion virker efter hensigten.
-        public void DistanceBetweenTracksTest()
+        [Test] // Test 14: Test om GetDistance-funktion virker efter hensigten ved forskel i X-koordinat
+        public void DistanceBetweenTracksXTest()
         {
             Track testTrackDist1 = new Track();
             testTrackDist1.XCoordinate = 20000;
@@ -222,6 +222,55 @@ namespace ATM.Test.Unit
 
             Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(30000));
         }
+
+        [Test] // Test 15: Test om GetDistance-funktion virker efter hensigten ved forskel i Y-koordinat
+        public void DistanceBetweenTracksYTest()
+        {
+            Track testTrackDist1 = new Track();
+            testTrackDist1.XCoordinate = 50000;
+            testTrackDist1.YCoordinate = 50000;
+            testTrackDist1.Altitude = 10000;
+
+            Track testTrackDist2 = new Track();
+            testTrackDist2.XCoordinate = 50000;
+            testTrackDist2.YCoordinate = 50500;
+            testTrackDist2.Altitude = 10000;
+
+            Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(500));
+        }
+
+        [Test] // Test 15: Test om GetDistance-funktion virker efter hensigten ved forskel i X- og Y-koordinat
+        public void DistanceBetweenTracksXYTest()
+        {
+            Track testTrackDist1 = new Track();
+            testTrackDist1.XCoordinate = 85000;
+            testTrackDist1.YCoordinate = 85000;
+            testTrackDist1.Altitude = 10000;
+
+            Track testTrackDist2 = new Track();
+            testTrackDist2.XCoordinate = 15000;
+            testTrackDist2.YCoordinate = 15000;
+            testTrackDist2.Altitude = 10000;
+
+            Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(500));
+        }
+
+        [Test] // Test 16: Test om GetDistance-funktion virker efter hensigten ved ingen forskel i koordinator
+        public void DistanceBetweenTracksTest()
+        {
+            Track testTrackDist1 = new Track();
+            testTrackDist1.XCoordinate = 50000;
+            testTrackDist1.YCoordinate = 50500;
+            testTrackDist1.Altitude = 10000;
+
+            Track testTrackDist2 = new Track();
+            testTrackDist2.XCoordinate = 50000;
+            testTrackDist2.YCoordinate = 50000;
+            testTrackDist2.Altitude = 10000;
+
+            Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(0));
+        }
+
 
         #endregion GetDistance Test
 
