@@ -10,7 +10,9 @@ namespace AirTrafficMonitor.Calculator
     public static class Calculator
     {
 
+        #region TrackIsInsideAirSpace
         //Punkt 1&5 - Bruges til at validere om tracks er indenfor airspace
+
         public static bool TrackIsInsideAirSpace(Track.Track track)
         {
             if ((track.XCoordinate >= 10000 && track.XCoordinate <= 90000) &&
@@ -25,7 +27,11 @@ namespace AirTrafficMonitor.Calculator
             }
         }
 
-        //Punkt 7 - current velocity
+        #endregion
+
+        #region GetCurrentVelocity
+        //Region Punkt 7 - current velocity
+
         public static double GetCurrentVelocity(Track.Track track1, Track.Track track2)
         {
             double time = (track2.Timer - track1.Timer).Seconds;
@@ -33,7 +39,9 @@ namespace AirTrafficMonitor.Calculator
 
             return GetDistance(track1, track2)/time;
         }
+        #endregion
 
+        #region GetDistance
         public static double GetDistance(Track.Track track1, Track.Track track2)
         {
             // for some reason our application runs and then arrives to this point (to be specific - Track.Track track2 returns a null pointer and crashes the application)
@@ -42,13 +50,18 @@ namespace AirTrafficMonitor.Calculator
 
             return Math.Sqrt((Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2)));
         }
+        #endregion
 
+        #region GetAltitudeDistance
         public static double GetAltitudeDistance(int alt1, int alt2)
         {
             return Math.Abs(alt1 - alt2);
         }
-
+        #endregion
+        
+        #region GetCurrentCourse
         //Punkt 7 - current course
+
         public static double GetCurrentCourse(Track.Track track1, Track.Track track2)
         {
             var deltaX = track2.XCoordinate - track1.XCoordinate;
@@ -66,8 +79,9 @@ namespace AirTrafficMonitor.Calculator
             return Math.Round(angle,1);
 
         }
+        #endregion
 
-
+        #region AreTracksColliding
         //Punkt 12 - separation condition
         public static bool AreTracksColliding(Track.Track track1, Track.Track track2)
         {
@@ -81,7 +95,7 @@ namespace AirTrafficMonitor.Calculator
                 return false; // not conflicting
             }
         }
-
+        #endregion
 
     }
 }

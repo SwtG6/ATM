@@ -15,7 +15,7 @@ using TransponderReceiver;
 
 namespace ATMApp
 {
-    class program
+    class Program
     {
         static void Main(string[] args)
         {
