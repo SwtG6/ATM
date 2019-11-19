@@ -17,7 +17,7 @@ namespace ATM.Test.Unit
         private IDataFormat UUT { get; set; }
 
         [SetUp]
-        public void setup()
+        public void Setup()
         {
             _fakeTransponderReceiver = Substitute.For<ITransponderReceiver>();
             

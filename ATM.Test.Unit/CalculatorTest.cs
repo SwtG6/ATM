@@ -207,7 +207,7 @@ namespace ATM.Test.Unit
 
         #region GetDistance Test
 
-        [Test] // Test 14: Test om GetDistance-funktion virker efter hensigten ved forskel i X-koordinat
+        [Test] // Test 14: Test om GetDistance-funktionen virker efter hensigten ved forskel i X-koordinat
         public void DistanceBetweenTracksXTest()
         {
             Track testTrackDist1 = new Track();
@@ -223,7 +223,7 @@ namespace ATM.Test.Unit
             Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(30000));
         }
 
-        [Test] // Test 15: Test om GetDistance-funktion virker efter hensigten ved forskel i Y-koordinat
+        [Test] // Test 15: Test om GetDistance-funktionen virker efter hensigten ved forskel i Y-koordinat
         public void DistanceBetweenTracksYTest()
         {
             Track testTrackDist1 = new Track();
@@ -239,7 +239,7 @@ namespace ATM.Test.Unit
             Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(500));
         }
 
-        //[Test] // Test 15: Test om GetDistance-funktion virker efter hensigten ved forskel i både X- og Y-koordinat
+        //[Test] // Test 15: Test om GetDistance-funktionen virker efter hensigten ved forskel i både X- og Y-koordinat
         //public void DistanceBetweenTracksXYTest()
         //{
         //    Track testTrackDist1 = new Track();
@@ -255,7 +255,7 @@ namespace ATM.Test.Unit
         //    Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(14140));
         //}
 
-        [Test] // Test 16: Test om GetDistance-funktion virker efter hensigten ved ingen forskel i koordinator
+        [Test] // Test 16: Test om GetDistance-funktionen virker efter hensigten ved ingen forskel i koordinator
         public void DistanceBetweenTracksTest()
         {
             Track testTrackDist1 = new Track();
@@ -355,22 +355,23 @@ namespace ATM.Test.Unit
 
 
 
+        [Test]
+        public void TrackVelocityTest()
+        {
+
+            DateTime testVelTime1 = new DateTime(2015,10,06,21,34,56,789);
+            DateTime testVelTime2 = new DateTime(2015, 10, 06, 21, 34, 60, 789);
+
+            //testVelTrack1.Timer = DateTime.Today;
+
+            Track testVelTrack1 = new Track();
+            testVelTrack1.Timer = testVelTime1;
 
 
+            Track testVelTrack2 = new Track();
+            testVelTrack1.Timer = testVelTime2;
 
-
-        //[Test]
-        //public void TrackVelocityTest()
-        //{
-        //    Track testVelTrack1 = new Track();
-        //    //DateTime testVelTime1 = new DateTime(2015,10,06,21,34,56,789);
-
-        //    testVelTrack1.Timer = DateTime.Today;
-
-        //    Track testVelTrack2 = new Track();
-        //    testVelTrack1.Timer 
-
-        //    Assert.That(GetCurrentVelocity(testVelTrack1, testVelTrack2), Is.EqualTo(4));
-        //}
+            Assert.That(GetCurrentVelocity(testVelTrack1, testVelTrack2), Is.EqualTo(4));
+        }
     }
 }
