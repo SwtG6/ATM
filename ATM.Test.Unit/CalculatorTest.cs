@@ -243,16 +243,16 @@ namespace ATM.Test.Unit
         public void DistanceBetweenTracksXYTest()
         {
             Track testTrackDist1 = new Track();
-            testTrackDist1.XCoordinate = 85000;
-            testTrackDist1.YCoordinate = 85000;
+            testTrackDist1.XCoordinate = 90000;
+            testTrackDist1.YCoordinate = 90000;
             testTrackDist1.Altitude = 10000;
 
             Track testTrackDist2 = new Track();
-            testTrackDist2.XCoordinate = 15000;
-            testTrackDist2.YCoordinate = 15000;
+            testTrackDist2.XCoordinate = 10000;
+            testTrackDist2.YCoordinate = 10000;
             testTrackDist2.Altitude = 10000;
 
-            Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(500));
+            Assert.That(GetDistance(testTrackDist1, testTrackDist2), Is.EqualTo(100000));
         }
 
         [Test] // Test 16: Test om GetDistance-funktion virker efter hensigten ved ingen forskel i koordinator
@@ -260,7 +260,7 @@ namespace ATM.Test.Unit
         {
             Track testTrackDist1 = new Track();
             testTrackDist1.XCoordinate = 50000;
-            testTrackDist1.YCoordinate = 50500;
+            testTrackDist1.YCoordinate = 50000;
             testTrackDist1.Altitude = 10000;
 
             Track testTrackDist2 = new Track();
