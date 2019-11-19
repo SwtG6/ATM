@@ -360,7 +360,7 @@ namespace ATM.Test.Unit
         {
 
             DateTime testVelTime1 = new DateTime(2015,10,06,21,34,56,789);
-            DateTime testVelTime2 = new DateTime(2015, 10, 06, 21, 34, 60, 789);
+            DateTime testVelTime2 = new DateTime(2015,10,06,21,34,59,789);
 
             //testVelTrack1.Timer = DateTime.Today;
 
@@ -369,9 +369,9 @@ namespace ATM.Test.Unit
 
 
             Track testVelTrack2 = new Track();
-            testVelTrack1.Timer = testVelTime2;
+            testVelTrack2.Timer = testVelTime2;
 
-            Assert.That(GetCurrentVelocity(testVelTrack1, testVelTrack2), Is.EqualTo(4));
+            Assert.That(GetCurrentVelocity(testVelTrack1, testVelTrack2), Is.EqualTo(3));
         }
     }
 }
