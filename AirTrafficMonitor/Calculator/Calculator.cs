@@ -51,8 +51,8 @@ namespace AirTrafficMonitor.Calculator
         //Punkt 7 - current course
         public static double GetCurrentCourse(Track.Track track1, Track.Track track2)
         {
-            int deltaX = track2.XCoordinate - track1.XCoordinate;
-            int deltaY = track2.YCoordinate - track1.YCoordinate;
+            var deltaX = track2.XCoordinate - track1.XCoordinate;
+            var deltaY = track2.YCoordinate - track1.YCoordinate;
 
             var theta = Math.Atan2(deltaX, deltaY);
 
