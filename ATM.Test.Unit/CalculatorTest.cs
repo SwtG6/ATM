@@ -360,7 +360,7 @@ namespace ATM.Test.Unit
         {
 
             DateTime testVelTime1 = new DateTime(2015,10,06,21,34,56,789);
-            DateTime testVelTime2 = new DateTime(2015,10,06,21,34,59,789);
+            DateTime testVelTime2 = new DateTime(2015,9,04,19,30,51,783);
 
             //testVelTrack1.Timer = DateTime.Today;
 
