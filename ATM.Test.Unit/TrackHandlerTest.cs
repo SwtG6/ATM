@@ -49,7 +49,7 @@ namespace ATM.Test.Unit
         }
 
         [Test] // Tag
-        public void TagTest()
+        public void TrackTest()
         {
             Track tx = new Track
             {
@@ -70,8 +70,7 @@ namespace ATM.Test.Unit
                 Assert.That(tx != ty, Is.True);
 
         }
-
-
+        
         // [SetUp] // Adding a track
 
         // https://stackoverflow.com/questions/7068843/how-to-use-datetime-parse-to-create-a-datetime-object/7068890
@@ -104,14 +103,57 @@ namespace ATM.Test.Unit
         }
 
         [Test] // Track
-        public void TrackTest()
+        public void AddTrackTest()
         {
             List<Track> tl = AddTracks();
             tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
                 (this, new TrackInAirspaceEvent { tracks = tl });
 
-
+            Assert.That(tracks1,Is.EqualTo(tl));
         }
+
+        [Test] // Tag
+        public void TagTest()
+        {
+            List<Track> tl = AddTracks();
+            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+                (this, new TrackInAirspaceEvent { tracks = tl });
+
+            Assert.That(tracks1[0],Is.EqualTo(tl[0]));
+        }
+
+        [Test] // Update
+        public void UpdateTrackTest()
+        {
+            List<Track> tl = AddTracks();
+            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+                (this, new TrackInAirspaceEvent { tracks = tl });
+
+            List<Track> tl2 = new List<Track>();
+            tl2.Add(new Track
+            {
+                Altitude = 8000,
+                Tag = "EZ666",
+                Timer = Parse("20191205121108500"),
+                XCoordinate = 20000,
+                YCoordinate = 10000
+            });
+            tl2.Add(new Track
+            {
+                Altitude = 12000,
+                Tag = "GG404",
+                Timer = Parse("20191205121109600"),
+                XCoordinate = 20000,
+                YCoordinate = 10000
+            });
+
+            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+                (this, new TrackInAirspaceEvent { tracks = tl2 });
+
+            Assert.That(tracks2[0], Is.EqualTo(tl2[0]));
+        }
+
+
 
 
 
