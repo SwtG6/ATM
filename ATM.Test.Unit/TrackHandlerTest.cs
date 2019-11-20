@@ -21,7 +21,7 @@ namespace ATM.Test.Unit
     [TestFixture]
     class TrackHandlerTest
     {
-        private List<Track> tracks1 = new List<Track>();
+        private List<Track> ListOfNewTracks = new List<Track>();
         private List<Track> tracks2 = new List<Track>();
 
         private List<Tracks> collisionTracks = new List<Tracks>();
@@ -41,7 +41,7 @@ namespace ATM.Test.Unit
 
         public void RaiseEventHandler(object o, TrackUpdateEvent e)
         {
-            tracks1 = e.ListOfNewTracks;
+            ListOfNewTracks = e.ListOfNewTracks;
             tracks2 = e.ListOfUpdatedTracks;
             collisionTracks = e.ListOfCollidingTracks;
         }
@@ -107,7 +107,7 @@ namespace ATM.Test.Unit
             tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
                 (this, new TrackInAirspaceEvent { tracks = track1 });
 
-            Assert.That(tracks1, Is.EqualTo(track1[0]));
+            Assert.That(ListOfNewTracks, Is.EqualTo(track1));
         }
 
         //[Test] // Tag
