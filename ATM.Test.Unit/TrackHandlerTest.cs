@@ -28,14 +28,12 @@ namespace ATM.Test.Unit
 
         private TrackHandler uut;
         private ITransponderReceiverClient tr_interface;
-        //private IDataFormat df_interface;
         private IConditionLogger logger;
 
         [SetUp]
         public void Setup()
         {
             tr_interface = Substitute.For<ITransponderReceiverClient>();
-            //df_interface = Substitute.For<IDataFormat>();
             logger = new ConditionLogger();
             uut = new TrackHandler(tr_interface, logger);
             uut.RaiseEvent += RaiseEventHandler;
