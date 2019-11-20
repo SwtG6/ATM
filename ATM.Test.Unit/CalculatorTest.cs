@@ -315,7 +315,6 @@ namespace ATM.Test.Unit
 
         #endregion GetCurrentCourse Tests
 
-
         #region Collision Test
 
         [Test] // Test 19: Tester om 2 fly er ved at kollidere, baseret på vores GetDistance- og GetAltitudeDistance-funktioner. Hvor altitude forskellen gør at de ikke bør kollidere.
@@ -368,14 +367,7 @@ namespace ATM.Test.Unit
 
         #endregion Collision Test
 
-
-        //string DateFormat = "yyyyMMddHHmmssfff";
-        //string DateTimeOffset = "201911191822";
-
-        //[TestCase(5, 5, "02100", "02500", 17.6777)]
-
-
-
+        #region VelocityTest
         public DateTime Parse(string time)
         {
             return DateTime.ParseExact(time, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
@@ -413,5 +405,8 @@ namespace ATM.Test.Unit
 
             Assert.That(GetCurrentVelocity(testVelTrack1, testVelTrack2), Is.EqualTo(500));
         }
+
+
+        #endregion VelocityTest
     }
 }

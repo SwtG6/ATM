@@ -154,6 +154,25 @@ namespace ATM.Test.Unit
             Assert.That(ListOfUpdatedTracks, Is.Not.Empty);
         }
 
+        [Test]
+
+        public void CollisionTest()
+        {
+            Track colTrack1 = new Track { XCoordinate = 42000, YCoordinate = 45000, Altitude = 10000 };
+            Track colTrack2 = new Track { XCoordinate = 45000, YCoordinate = 45000, Altitude = 9900 };
+
+            List<Track> colTracks = new List<Track>();
+            colTracks.Add(colTrack1);
+            colTracks.Add(colTrack2);
+
+            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+                (this, new TrackInAirspaceEvent { tracks = colTracks });
+
+            Tracks TrackHolder = new Tracks { New = colTrack1, Old = colTrack2 };
+
+            Assert.That(collisionTracks.Count > 0, Is.EqualTo(2));
+
+        }
 
 
         //[Test] // Adding a track
