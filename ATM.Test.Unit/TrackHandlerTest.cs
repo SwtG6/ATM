@@ -111,15 +111,15 @@ namespace ATM.Test.Unit
             Assert.That(ListOfNewTracks, Is.Not.Empty);
         }
 
-        //[Test] // Tag
-        //public void TagTest()
-        //{
-        //    List<Track> tl1 = AddTracks();
-        //    tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-        //        (this, new TrackInAirspaceEvent { tracks = tl1 });
+        [Test] // Tag
+        public void TagTest()
+        {
+            List<Track> trackTag1 = AddTracks();
+            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+                (this, new TrackInAirspaceEvent { tracks = trackTag1 });
 
-        //    Assert.That(tracks1[0],Is.EqualTo(tl1[0]));
-        //}
+            Assert.That(ListOfNewTracks[0], Is.EqualTo(trackTag1[0]));
+        }
 
         //[Test] // Update
         //public void UpdateTrackTest()
