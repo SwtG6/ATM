@@ -103,11 +103,11 @@ namespace ATM.Test.Unit
         [Test] // Add New Track
         public void AddTrackTest()
         {
-            List<Track> newTrack1 = AddTracks();
+            List<Track> track1 = AddTracks();
             tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = newTrack1 });
+                (this, new TrackInAirspaceEvent { tracks = track1 });
 
-            Assert.That(tracks1[0], Is.EqualTo(newTrack1[0]));
+            Assert.That(tracks1[0], Is.EqualTo(track1));
         }
 
         //[Test] // Tag
