@@ -40,10 +40,12 @@ namespace AirTrafficMonitor.TransponderReceiver
                 //System.Console.WriteLine($"Transponderdata {data}");
             }
 
-            if (TrackEventReceived != null)
-            {
-                TrackEventReceived(this, new TrackInAirspaceEvent { tracks = tempTrack });
-            }
+            TrackEventReceived?.Invoke(this, new TrackInAirspaceEvent { tracks = tempTrack });
+
+            //if (TrackEventReceived != null) TrackEventReceived(this, new TrackInAirspaceEvent { tracks = tempTrack });
+            //{
+            //    TrackEventReceived(this, new TrackInAirspaceEvent { tracks = tempTrack });
+            //}
         }
     }
 }

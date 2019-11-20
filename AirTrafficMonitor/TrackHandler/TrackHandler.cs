@@ -13,98 +13,98 @@ namespace AirTrafficMonitor.TrackHandler
 {
     public class TrackHandler : ITrackHandler
     {
-        private List<Tracks> _tracks;
-        private List<string> _trackTags;
-        private List<int> _conditionTracks;
-        private ITransponderReceiverClient _transponderReceiverClient;
-        private IConditionLogger _conditionLogger;
-        private TrackUpdateEvent _trackUpdate;
+        private List<Tracks> tracks;
+        private List<string> trackTags;
+        private List<int> conditionTracks;
+        private ITransponderReceiverClient receiverClient;
+        private IConditionLogger conditionLogger;
+        private TrackUpdateEvent trackUpdate;
 
 
 
-        public TrackHandler(ITransponderReceiverClient TransponderReceiverClient, IConditionLogger ConditionLogger)
+        public TrackHandler(ITransponderReceiverClient _receiverClient, IConditionLogger conditionLog)
         {
-            _tracks = new List<Tracks>();
-            _trackTags = new List<string>();
-            _conditionTracks = new List<int>();
-            _transponderReceiverClient = TransponderReceiverClient;
-            _conditionLogger = ConditionLogger;
-            TransponderReceiverClient.TrackEventReceived += AddTrack;
+            tracks = new List<Tracks>();
+            trackTags = new List<string>();
+            conditionTracks = new List<int>();
+            receiverClient = _receiverClient;
+            conditionLogger = conditionLog;
+            receiverClient.TrackEventReceived += AddTrack;
         }
 
         private void AddNewTrack(Track.Track add)
         {
             Tracks newTrack = new Tracks();
             newTrack.New = add;
-            _tracks.Add(newTrack);
+            tracks.Add(newTrack);
         }
 
         private void UpdateTrack(Track.Track upTrack)
         {
-            int trackIndex = _tracks.FindIndex(t => t.New == upTrack);
+            int trackIndex = tracks.FindIndex(t => t.New == upTrack);
 
-            _tracks[trackIndex].Old = _tracks[trackIndex].New;
+            tracks[trackIndex].Old = tracks[trackIndex].New;
 
-            _tracks[trackIndex].New = upTrack;
+            tracks[trackIndex].New = upTrack;
 
             //calculating new course and velocity
-            Track.Track track1 = _tracks[trackIndex].Old;
-            Track.Track track2 = _tracks[trackIndex].New;
+            Track.Track track1 = tracks[trackIndex].Old;
+            Track.Track track2 = tracks[trackIndex].New;
 
-            _tracks[trackIndex].New.CompassCourse = Calculator.Calculator.GetCurrentCourse(track1, track2);
+            tracks[trackIndex].New.CompassCourse = Calculator.Calculator.GetCurrentCourse(track1, track2);
 
-            _tracks[trackIndex].New.HorizontalVelocity = Calculator.Calculator.GetCurrentVelocity(track1, track2);
+            tracks[trackIndex].New.HorizontalVelocity = Calculator.Calculator.GetCurrentVelocity(track1, track2);
         }
 
         private void AddTrack(object sender, TrackInAirspaceEvent arg)
         {
-            _trackUpdate = new TrackUpdateEvent();
+            trackUpdate = new TrackUpdateEvent();
 
             foreach (var track in arg.tracks)
             {
                 if (Calculator.Calculator.TrackIsInsideAirSpace(track))
                 {
-                    if (!_trackTags.Contains(track.Tag))
+                    if (trackTags.Contains(track.Tag))
                     {
-                        _trackTags.Add(track.Tag);
-                        AddNewTrack(track);
-                        _trackUpdate.ListOfNewTracks.Add(track);
+                        UpdateTrack(track);
+                        trackUpdate.ListOfUpdatedTracks.Add(track);
                     }
                     else
                     {
-                        UpdateTrack(track);
-                        _trackUpdate.ListOfUpdatedTracks.Add(track);
+                        trackTags.Add(track.Tag);
+                        AddNewTrack(track);
+                        trackUpdate.ListOfNewTracks.Add(track);
                     }
                 }
                 else
                 {
-                    if (_trackTags.Contains(track.Tag))
+                    if (trackTags.Contains(track.Tag))
                     {
-                        _trackTags.Remove(track.Tag);
-                        _tracks.Remove(_tracks.First(t => t.New.Tag == track.Tag));
+                        trackTags.Remove(track.Tag);
+                        tracks.Remove(tracks.First(t => t.New.Tag == track.Tag));
                     }
                 }
             }
 
             AreTracksColliding();
 
-            RaiseEvent?.Invoke(this, _trackUpdate);
+            RaiseEvent?.Invoke(this, trackUpdate);
         }
 
         private void AreTracksColliding()
         {
-            for (int i = 0; i < _tracks.Count - 1; i++)
+            for (int i = 0; i < tracks.Count - 1; i++)
             {
-                for (int j = i + 1; j < _tracks.Count; j++)
+                for (int j = i + 1; j < tracks.Count; j++)
                 {
-                    if (Calculator.Calculator.AreTracksColliding(_tracks[i].New,_tracks[j].Old))
+                    if (Calculator.Calculator.AreTracksColliding(tracks[i].New,tracks[j].Old))
                     {
-                        Tracks testTracks = new Tracks {New = _tracks[i].New, Old = _tracks[j].Old};
-                        if (!_conditionTracks.Contains(testTracks.GetHashCode()))
+                        Tracks testTracks = new Tracks {New = tracks[i].New, Old = tracks[j].Old};
+                        if (!conditionTracks.Contains(testTracks.GetHashCode()))
                         {
-                            _trackUpdate.ListOfCollidingTracks.Add(testTracks);
-                            _conditionTracks.Add(testTracks.GetHashCode());
-                            _conditionLogger.LogTracks(testTracks);
+                            trackUpdate.ListOfCollidingTracks.Add(testTracks);
+                            conditionTracks.Add(testTracks.GetHashCode());
+                            conditionLogger.LogTracks(testTracks);
                         }
                         
                     }
