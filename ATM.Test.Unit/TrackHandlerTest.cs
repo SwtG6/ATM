@@ -39,7 +39,7 @@ namespace ATM.Test.Unit
             uut.RaiseEvent += RaiseEventHandler;
         }
 
-        public void RaiseEventHandler(object o, TrackUpdateEvent e)
+        private void RaiseEventHandler(object o, TrackUpdateEvent e)
         {
             ListOfNewTracks = e.ListOfNewTracks;
             tracks2 = e.ListOfUpdatedTracks;
@@ -88,14 +88,14 @@ namespace ATM.Test.Unit
                 XCoordinate = 6666,
                 YCoordinate = 6969
             });
-            track1.Add(new Track
-            {
-                Altitude = 12000,
-                Tag = "DEF1234",
-                Timer = Parse("20191205121107400"),
-                XCoordinate = 20000,
-                YCoordinate = 10000
-            });
+            //track1.Add(new Track
+            //{
+            //    Altitude = 12000,
+            //    Tag = "DEF1234",
+            //    Timer = Parse("20191205121107400"),
+            //    XCoordinate = 20000,
+            //    YCoordinate = 10000
+            //});
 
             return track1;
         }
