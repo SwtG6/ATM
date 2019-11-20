@@ -16,13 +16,13 @@ using TransponderReceiver;
 namespace ATM.Test.Unit
 {
 
-//    [TestFixture]
-//    class TrackHandlerTest
-//    {
-//        private List<Track> tracks1 = new List<Track>();
-//        private List<Track> tracks2 = new List<Track>();
+    [TestFixture]
+    class TrackHandlerTest
+    {
+        private List<Track> tracks1 = new List<Track>();
+        private List<Track> tracks2 = new List<Track>();
 
-//        private List<Tracks> collisionTracks = new List<Tracks>();
+        private List<Tracks> collisionTracks = new List<Tracks>();
 
         private TrackHandler uut;
         private ITransponderReceiver tr_interface;
@@ -38,47 +38,47 @@ namespace ATM.Test.Unit
             uut = new TrackHandler(df_interface,logger);
             uut.RaiseEvent += RaiseEventHandler;
 
-//        }
+        }
 
-//        private void RaiseEventHandler(object o, TrackUpdateEvent e)
-//        {
-//            tracks1 = e.ListOfNewTracks;
-//            tracks2 = e.ListOfUpdatedTracks;
-//            collisionTracks = e.ListOfCollidingTracks;
+        private void RaiseEventHandler(object o, TrackUpdateEvent e)
+        {
+            tracks1 = e.ListOfNewTracks;
+            tracks2 = e.ListOfUpdatedTracks;
+            collisionTracks = e.ListOfCollidingTracks;
 
-//        }
+        }
 
-//        [Test] // Tag
-//        public void TagTest()
-//        {
-//            Track tx = new Track
-//            {
-//                Altitude = 30000,
-//                Tag = "ABC1337"
-//            };
+        [Test] // Tag
+        public void TagTest()
+        {
+            Track tx = new Track
+            {
+                Altitude = 30000,
+                Tag = "ABC1337"
+            };
 
-//            Track ty = new Track
-//            {
-//                Altitude = 12500,
-//                Tag = "ABC1337"
-//            };
+            Track ty = new Track
+            {
+                Altitude = 12500,
+                Tag = "ABC1337"
+            };
 
-//            Assert.That(tx == ty,Is.True);
+            Assert.That(tx == ty,Is.True);
 
-//            ty.Tag = "XYZ742";
+                ty.Tag = "XYZ742";
 
-//            Assert.That(tx != ty, Is.True);
+                Assert.That(tx != ty, Is.True);
 
-//        }
+        }
 
 
-//        [SetUp] // Adding a track
+        [SetUp] // Adding a track
 
-//        // https://stackoverflow.com/questions/7068843/how-to-use-datetime-parse-to-create-a-datetime-object/7068890
-//        private DateTime Parse(string time)
-//        {
-//            return DateTime.ParseExact(time, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
-//        }
+       // https://stackoverflow.com/questions/7068843/how-to-use-datetime-parse-to-create-a-datetime-object/7068890
+        private DateTime Parse(string time)
+        {
+            return DateTime.ParseExact(time, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
+        }
 
         public List<Track> AddTracks()
         {
@@ -100,19 +100,19 @@ namespace ATM.Test.Unit
                 YCoordinate = 10000
             });
 
-//            return t1;
-//        }
-
-        [Test] // Adding a track
-
-        public void TestAddTracks()
-        {
-            List<Track> t1 = AddTracks();
-            tr_interface. += Raise.Event<TrackInAirspaceEvent>;
-
+            return t1;
         }
 
+        //[Test] // Adding a track
+
+        //public void TestAddTracks()
+        //{
+        //    List<Track> t1 = AddTracks();
+        //    tr_interface. += Raise.Event<TrackInAirspaceEvent>;
+
+        //}
 
 
-//    }
+
+    }
 }

@@ -39,6 +39,7 @@ namespace ATM.Test.Unit
             Assert.That(File.Exists(Path + @"\LogFile.txt"), Is.True);
         }
 
+        // Might fail
         [TestCase("track1")] // test to see if what we write in the LogFile is actually written
         public void TestWriteToLogFile(string track1)
         {
