@@ -79,8 +79,8 @@ namespace ATM.Test.Unit
 
         public List<Track> AddTracks()
         {
-            List<Track> tl1 = new List<Track>();
-            tl1.Add(new Track
+            List<Track> track1 = new List<Track>();
+            track1.Add(new Track
             {
                 Altitude = 10000,
                 Tag = "ABC1337",
@@ -88,7 +88,7 @@ namespace ATM.Test.Unit
                 XCoordinate = 6666,
                 YCoordinate = 6969
             });
-            tl1.Add(new Track
+            track1.Add(new Track
             {
                 Altitude = 12000,
                 Tag = "DEF1234",
@@ -97,59 +97,59 @@ namespace ATM.Test.Unit
                 YCoordinate = 10000
             });
 
-            return tl1;
+            return track1;
         }
 
-        [Test] // Track
+        [Test] // Add New Track
         public void AddTrackTest()
         {
-            List<Track> tl1 = AddTracks();
+            List<Track> newTrack1 = AddTracks();
             tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = tl1 });
+                (this, new TrackInAirspaceEvent { tracks = newTrack1 });
 
-            Assert.That(tracks1,Is.EqualTo(tl1));
+            Assert.That(tracks1, Is.EqualTo(newTrack1));
         }
 
-        [Test] // Tag
-        public void TagTest()
-        {
-            List<Track> tl1 = AddTracks();
-            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = tl1 });
+        //[Test] // Tag
+        //public void TagTest()
+        //{
+        //    List<Track> tl1 = AddTracks();
+        //    tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+        //        (this, new TrackInAirspaceEvent { tracks = tl1 });
 
-            Assert.That(tracks1[0],Is.EqualTo(tl1[0]));
-        }
+        //    Assert.That(tracks1[0],Is.EqualTo(tl1[0]));
+        //}
 
-        [Test] // Update
-        public void UpdateTrackTest()
-        {
-            List<Track> tl1 = AddTracks();
-            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = tl1 });
+        //[Test] // Update
+        //public void UpdateTrackTest()
+        //{
+        //    List<Track> tl1 = AddTracks();
+        //    tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+        //        (this, new TrackInAirspaceEvent { tracks = tl1 });
 
-            List<Track> tl2 = new List<Track>();
-            tl2.Add(new Track
-            {
-                Altitude = 8000,
-                Tag = "EZ666",
-                Timer = Parse("20191205121108500"),
-                XCoordinate = 20000,
-                YCoordinate = 10000
-            });
-            tl2.Add(new Track
-            {
-                Altitude = 12000,
-                Tag = "GG404",
-                Timer = Parse("20191205121109600"),
-                XCoordinate = 20000,
-                YCoordinate = 10000
-            });
+        //    List<Track> tl2 = new List<Track>();
+        //    tl2.Add(new Track
+        //    {
+        //        Altitude = 8000,
+        //        Tag = "EZ666",
+        //        Timer = Parse("20191205121108500"),
+        //        XCoordinate = 20000,
+        //        YCoordinate = 10000
+        //    });
+        //    tl2.Add(new Track
+        //    {
+        //        Altitude = 12000,
+        //        Tag = "GG404",
+        //        Timer = Parse("20191205121109600"),
+        //        XCoordinate = 20000,
+        //        YCoordinate = 10000
+        //    });
 
-            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = tl2 });
+        //    tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+        //        (this, new TrackInAirspaceEvent { tracks = tl2 });
 
-            Assert.That(tracks2[0], Is.EqualTo(tl2[0]));
-        }
+        //    Assert.That(tracks2[0], Is.EqualTo(tl2[0]));
+        //}
 
 
 
