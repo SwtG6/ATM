@@ -8,6 +8,7 @@ using AirTrafficMonitor.ConditionLogger;
 using AirTrafficMonitor.Data;
 using AirTrafficMonitor.Track;
 using AirTrafficMonitor.TrackHandler;
+using AirTrafficMonitor.TransponderReceiver;
 using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
@@ -24,14 +25,17 @@ namespace ATM.Test.Unit
         private List<Tracks> collisionTracks = new List<Tracks>();
 
         private TrackHandler uut;
-        private IDataFormat tr_interface;
+        private ITransponderReceiver tr_interface;
+        private IDataFormat df_interface;
         private IConditionLogger logger;
 
         [SetUp]
         public void Setup()
         {
-            tr_interface = Substitute.For<IDataFormat>();
+            tr_interface = Substitute.For<ITransponderReceiver>();
+            df_interface = Substitute.For<IDataFormat>();
             logger = new ConditionLogger();
+            uut = new TrackHandler(df_interface,logger);
             uut.RaiseEvent += RaiseEventHandler;
 
         }
@@ -87,18 +91,26 @@ namespace ATM.Test.Unit
                 XCoordinate = 6666,
                 YCoordinate = 6969
             });
+            t1.Add(new Track
+            {
+                Altitude = 12000,
+                Tag = "DEF1234",
+                Timer = Parse("20191205121107400"),
+                XCoordinate = 20000,
+                YCoordinate = 10000
+            });
 
             return t1;
         }
 
-/*        [Test]*/ // Adding a track
+        [Test] // Adding a track
 
-        //public void TestAddTracks()
-        //{
-        //    List<Track> t1 = AddTracks();
-        //    tr_interface.TransponderDataReady += Raise.Event();
+        public void TestAddTracks()
+        {
+            List<Track> t1 = AddTracks();
+            tr_interface. += Raise.Event<TrackInAirspaceEvent>;
 
-        //}
+        }
 
 
 

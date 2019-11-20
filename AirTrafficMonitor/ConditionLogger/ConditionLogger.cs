@@ -13,13 +13,13 @@ namespace AirTrafficMonitor.ConditionLogger
         private readonly List<Tracks> _tracksLogged;
         private string Path;
         private string LogFile;
-
+        
 
         // ConditionLogger Constructor sets path to Local AppData and adds a .txt file called Log.
         // if the file already exists it just instantiates the List of Tracks
         public ConditionLogger()
         {
-            // removed AppData usage changed to documents. now saved as Log.txt in path: "C:\\Users\\FlemmingBlaabjerg\\Documents\\Log.txt"
+            // removed AppData usage changed to documents. now saved as Log.txt in path: "C:\\Users\\xx\\Documents\\Log.txt" fordelen ved AppData som jeg forstod det, var at filen eksisterer på tværs af brugere.
             LogFile = @"\Log.txt";
             Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + LogFile;
             if (!File.Exists(Path))

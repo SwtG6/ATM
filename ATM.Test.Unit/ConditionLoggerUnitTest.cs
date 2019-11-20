@@ -18,12 +18,13 @@ namespace ATM.Test.Unit
     {
         private IConditionLogger uut;
         private string Path;
+        private string LogFile = @"\Log.txt";
 
         [SetUp] // Setup making the uut + adding path for the testfolder location.
         public void Setup()
         {
             uut = new ConditionLogger();
-            Path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + LogFile;
         }
 
         // Clear Log functionality will be necessary to reset the file that is tested on.
@@ -38,22 +39,21 @@ namespace ATM.Test.Unit
             Assert.That(File.Exists(Path + @"\LogFile.txt"), Is.True);
         }
 
-        // Test fails - uncommented to be able to use Jenkins
-        //[TestCase("track1")] // test to see if what we write in the LogFile is actually written
-        //public void TestWriteToLogFile(string track1)
-        //{
-        //    ClearLog(); //init clear to make sure log is empty before hand
+        [TestCase("track1")] // test to see if what we write in the LogFile is actually written
+        public void TestWriteToLogFile(string track1)
+        {
+            ClearLog(); //init clear to make sure log is empty before hand
 
-        //    Track t = new Track{Tag = track1, Timer = DateTime.Now};
+            Track t = new Track { Tag = track1, Timer = DateTime.Now };
 
-        //    Tracks ts = new Tracks{New = t};
+            Tracks ts = new Tracks { New = t };
 
-        //    uut.LogTracks(ts);
-        //    string[] write = File.ReadAllLines(Path + @"\LogFile.txt");
+            uut.LogTracks(ts);
+            string[] write = File.ReadAllLines(Path + @"\LogFile.txt");
 
-        //    Assert.That(write.Equals(track1));
+            Assert.That(write.Equals(track1));
 
-        //}
+        }
 
 
 
