@@ -40,7 +40,7 @@ namespace ATM.Test.Unit
 
         }
 
-        private void RaiseEventHandler(object o, TrackUpdateEvent e)
+        public void RaiseEventHandler(object o, TrackUpdateEvent e)
         {
             tracks1 = e.ListOfNewTracks;
             tracks2 = e.ListOfUpdatedTracks;
