@@ -24,7 +24,7 @@ namespace AirTrafficMonitor.ConsoleLogger
         {
             _logFile = @"\Log.txt";
             _path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + _logFile;
-            StreamWriter sw = new StreamWriter(_path);
+            //StreamWriter sw = new StreamWriter(_path); For some reason we can't acces the path (might not be closed somewhere?)
 
             Console.Clear();
             foreach (var track in e.ListOfNewTracks)
@@ -41,13 +41,18 @@ namespace AirTrafficMonitor.ConsoleLogger
                 Console.WriteLine("Current x-cord: {0},  y-cord: {1},  altitude: {2} ", track.XCoordinate, track.YCoordinate, track.Altitude);
                 Console.WriteLine("Current horizontal velocity in m/s: {0} and course in degrees: {1} ", track.HorizontalVelocity, track.CompassCourse);
             }
-            foreach (var track in e.ListOfCollidingTracks)
-            {
-                Console.WriteLine("COLLISION Detected!");
-                Console.WriteLine("{0} is colliding with {1}", track.New.Tag, track.Old.Tag);
-                sw.WriteLine("COLLISION Detected!");
-                sw.WriteLine("{0} is colliding with {1}", track.New.Tag, track.Old.Tag);
 
+            if (File.Exists(_path))
+            {
+                foreach (var track in e.ListOfCollidingTracks)
+                {
+                    Console.WriteLine("COLLISION Detected!");
+                    Console.WriteLine("{0} is colliding with {1}", track.New.Tag, track.Old.Tag);
+                    //sw.WriteLine("COLLISION Detected!");
+                    //sw.WriteLine("{0} is colliding with {1}", track.New.Tag, track.Old.Tag);
+                    //sw.Close();
+
+                }
             }
         }
     }
