@@ -294,6 +294,21 @@ namespace ATM.Test.Unit
             Assert.That(GetCurrentCourse(testCourseTrack1, testCourseTrack2), Is.EqualTo(45));
         }
 
+        [Test] // Test 19: Tjekker om vinklen omregnes ved et negativt resultat
+        public void AngleTest()
+        {
+            Track testCourseTrack1 = new Track();
+            testCourseTrack1.XCoordinate = 30000;
+            testCourseTrack1.YCoordinate = 50000;
+
+            Track testCourseTrack2 = new Track();
+            testCourseTrack2.XCoordinate = 20000;
+            testCourseTrack2.YCoordinate = 40000;
+
+            Assert.That(GetCurrentCourse(testCourseTrack1, testCourseTrack2), Is.EqualTo(225));
+        }
+
+
         #region Collision Test
 
         [Test] // Test 19: Tester om 2 fly er ved at kollidere, baseret på vores GetDistance- og GetAltitudeDistance-funktioner. Hvor altitude forskellen gør at de ikke bør kollidere.
