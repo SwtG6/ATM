@@ -111,53 +111,47 @@ namespace ATM.Test.Unit
             Assert.That(ListOfNewTracks, Is.Not.Empty);
         }
 
-        [Test] // Tag
-        public void TagTest()
-        {
-            List<Track> trackTag1 = AddTracks();
-            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = trackTag1 });
-
-            //Assert.That(ListOfNewTracks[1], Is.EqualTo(trackTag1[1]));
-            Assert.That(ListOfNewTracks, Is.Not.Empty);
-        }
-
-        //[Test] // Update
-        //public void UpdateTrackTest()
+        //[Test] // Tag
+        //public void TagTest()
         //{
-        //    List<Track> tl1 = AddTracks();
+        //    List<Track> trackTag1 = AddTracks();
         //    tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-        //        (this, new TrackInAirspaceEvent { tracks = tl1 });
+        //        (this, new TrackInAirspaceEvent { tracks = trackTag1 });
 
-        //    List<Track> tl2 = new List<Track>();
-        //    tl2.Add(new Track
-        //    {
-        //        Altitude = 8000,
-        //        Tag = "EZ666",
-        //        Timer = Parse("20191205121108500"),
-        //        XCoordinate = 20000,
-        //        YCoordinate = 10000
-        //    });
-        //    tl2.Add(new Track
-        //    {
-        //        Altitude = 12000,
-        //        Tag = "GG404",
-        //        Timer = Parse("20191205121109600"),
-        //        XCoordinate = 20000,
-        //        YCoordinate = 10000
-        //    });
-
-        //    tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-        //        (this, new TrackInAirspaceEvent { tracks = tl2 });
-
-        //    Assert.That(tracks2[0], Is.EqualTo(tl2[0]));
+        //    //Assert.That(ListOfNewTracks[1], Is.EqualTo(trackTag1[1]));
+        //    Assert.That(ListOfNewTracks, Is.Not.Empty);
         //}
 
+        [Test] // Update
+        public void UpdateTrackTest()
+        {
+            List<Track> upTrack1 = AddTracks();
+            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+                (this, new TrackInAirspaceEvent { tracks = upTrack1 });
 
+            List<Track> upTrack2 = new List<Track>();
+            upTrack2.Add(new Track
+            {
+                Altitude = 8000,
+                Tag = "EZ666",
+                Timer = Parse("20191205121108500"),
+                XCoordinate = 20000,
+                YCoordinate = 10000
+            });
+            upTrack2.Add(new Track
+            {
+                Altitude = 12000,
+                Tag = "GG404",
+                Timer = Parse("20191205121109600"),
+                XCoordinate = 20000,
+                YCoordinate = 10000
+            });
 
+            tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+                (this, new TrackInAirspaceEvent { tracks = upTrack2 });
 
-
-
+            Assert.That(ListOfUpdatedTracks[0], Is.EqualTo(upTrack2[0]));
+        }
 
 
 
