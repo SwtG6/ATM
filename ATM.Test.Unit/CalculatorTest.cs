@@ -347,16 +347,23 @@ namespace ATM.Test.Unit
         #endregion Collision Test
 
 
+        //string DateFormat = "yyyyMMddHHmmssfff";
+        //string DateTimeOffset = "201911191822";
+
+        //[TestCase(5, 5, "02100", "02500", 17.6777)]
 
 
-        [Test]
+
+        //[Test]
         public void TrackVelocityTest()
         {
             string DateFormat = "yyyyMMddHHmmssfff";
             string DateTimeOffset = "201911191822";
 
-            //DateTime testVelTime1 = new DateTime.ParseExact("2015904193051783", DateFormat, CultureInfo.InvariantCulture);
-            //DateTime testVelTime2 = new DateTime(2015,9,04,19,30,51,783);
+
+
+            DateTime testVelTime1 = DateTime.ParseExact(DateTimeOffset, DateFormat, CultureInfo.InvariantCulture);
+            DateTime testVelTime2 = DateTime.ParseExact(DateTimeOffset, DateFormat, CultureInfo.InvariantCulture);
 
             //testVelTrack1.Timer = DateTime.Today;
 
