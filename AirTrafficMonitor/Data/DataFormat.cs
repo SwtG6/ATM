@@ -64,7 +64,7 @@ namespace AirTrafficMonitor.Data
             string DateFormat = "yyyyMMddHHmmssfff";
             track.Timer = DateTime.ParseExact(trackInfoSplit[4], DateFormat, CultureInfo.InvariantCulture);
 
-            Console.WriteLine(track.Timer);
+            //Console.WriteLine(track.Timer);
 
             return track;
 
