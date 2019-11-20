@@ -14,41 +14,44 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitor.Data
 {
-    public class TrackInAirspaceEvent : EventArgs
-    {
-        public List<Track.Track> tracks { get; set; }
-    }
+    //public class TrackInAirspaceEvent : EventArgs
+    //{
+    //    public List<Track.Track> tracks { get; set; }
+    //}
 
-    public delegate void InformationReceivedHandler(object o, TrackInAirspaceEvent e);
+
 
     public class DataFormat : IDataFormat
     {
-        private ITransponderReceiver receiver;
+        //private ITransponderReceiver receiver;
 
-        public event EventHandler<TransponderDataEventArgs> TransponderDataReady;
+        //public event EventHandler<TransponderDataEventArgs> TransponderDataReady;
 
-        public DataFormat(ITransponderReceiver receiver)
-        {
-            this.receiver = receiver;
-            this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
-        }
+        //public DataFormat(ITransponderReceiver receiver)
+        //{
+        //    this.receiver = receiver;
+        //    this.receiver.TransponderDataReady += ReceiverOnTransponderDataReady;
+        //}
 
-        public void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
-        {
-            List<Track.Track> tempTracks = new List<Track.Track>();
+        //public void ReceiverOnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
+        //{
+        //    List<Track.Track> tempTracks = new List<Track.Track>();
 
-            foreach (var data in e.TransponderData)
-            {
-                Track.Track track = CreateTrack(data);
-                tempTracks.Add(track);
+        //    foreach (var data in e.TransponderData)
+        //    {
+        //        Track.Track track = CreateTrack(data);
+        //        tempTracks.Add(track);
 
-                //System.Console.WriteLine($"TransponderData {data}");
-            }
-            if (TransponderDataReady != null)
-            {
-                TransponderDataReady(this, new TransponderDataEventArgs { tracks = tempTracks });
-            }
-        }
+        //        //System.Console.WriteLine($"TransponderData {data}");
+        //    }
+        //    if (TransponderDataReady != null)
+        //    {
+        //        TransponderDataReady(this, new TransponderDataEventArgs { tracks = tempTracks });
+        //    }
+        //}
+
+
+        public DataFormat() { }
 
         public Track.Track CreateTrack(string trackInfo)
         {

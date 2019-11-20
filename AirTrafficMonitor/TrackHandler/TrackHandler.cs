@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AirTrafficMonitor.Data;
 using TransponderReceiver;
+using AirTrafficMonitor.TransponderReceiverClient;
 
 namespace AirTrafficMonitor.TrackHandler
 {
@@ -15,20 +16,20 @@ namespace AirTrafficMonitor.TrackHandler
         private List<Tracks> _tracks;
         private List<string> _trackTags;
         private List<int> _conditionTracks;
-        private IDataFormat _transponderReceiverClient;
+        private ITransponderReceiverClient _transponderReceiverClient;
         private IConditionLogger _conditionLogger;
         private TrackUpdateEvent _trackUpdate;
 
 
 
-        public TrackHandler(IDataFormat TransponderReceiverClient, IConditionLogger ConditionLogger)
+        public TrackHandler(ITransponderReceiverClient TransponderReceiverClient, IConditionLogger ConditionLogger)
         {
             _tracks = new List<Tracks>();
             _trackTags = new List<string>();
             _conditionTracks = new List<int>();
             _transponderReceiverClient = TransponderReceiverClient;
             _conditionLogger = ConditionLogger;
-            TransponderReceiverClient.TransponderDataReady += AddTrack;
+            TransponderReceiverClient.TrackEventReceived += AddTrack;
         }
 
         private void AddNewTrack(Track.Track add)
@@ -55,7 +56,7 @@ namespace AirTrafficMonitor.TrackHandler
             _tracks[trackIndex].New.HorizontalVelocity = Calculator.Calculator.GetCurrentVelocity(track1, track2);
         }
 
-        private void AddTrack(object sender, Data.TransponderDataEventArgs arg)
+        private void AddTrack(object sender, TrackInAirspaceEvent arg)
         {
             _trackUpdate = new TrackUpdateEvent();
 
@@ -85,12 +86,12 @@ namespace AirTrafficMonitor.TrackHandler
                 }
             }
 
-            ArePlanesColliding();
+            AreTracksColliding();
 
             RaiseEvent?.Invoke(this, _trackUpdate);
         }
 
-        private void ArePlanesColliding()
+        private void AreTracksColliding()
         {
             for (int i = 0; i < _tracks.Count - 1; i++)
             {

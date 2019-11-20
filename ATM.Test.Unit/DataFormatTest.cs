@@ -4,7 +4,8 @@ using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
 using AirTrafficMonitor.Data;
-using TransponderDataEventArgs = AirTrafficMonitor.Data.TransponderDataEventArgs;
+using AirTrafficMonitor.TransponderReceiverClient;
+using AirTrafficMonitor.TransponderReceiver;
 //using TransponderDataEventArgs = TransponderReceiver.TransponderDataEventArgs;
 
 namespace ATM.Test.Unit
@@ -12,16 +13,16 @@ namespace ATM.Test.Unit
     [TestFixture]
     class DataFormatTest
     {
-        private ITransponderReceiver _fakeTransponderReceiver { get; set; }
-        private TransponderDataEventArgs _dataFormatEventArgs { get; set; }
+        //private ITransponderReceiverClient _fakeTransponderReceiver { get; set; }
+        //private TrackInAirspaceEvent _dataFormatEventArgs { get; set; }
         private IDataFormat UUT { get; set; }
 
         [SetUp]
         public void Setup()
         {
-            _fakeTransponderReceiver = Substitute.For<ITransponderReceiver>();
+            //_fakeTransponderReceiver = Substitute.For<ITransponderReceiverClient>();
             
-            UUT = new DataFormat(_fakeTransponderReceiver);
+            UUT = new DataFormat();
 
             //new DateTime(2015, 10, 06, 21, 34, 56, 789);
         }
@@ -40,21 +41,21 @@ namespace ATM.Test.Unit
             Assert.That(testTrackData.Timer, Is.EqualTo(new DateTime(2015, 10, 06, 21, 34, 56, 789)));
         }
 
-        [Test] // Test af hvorvidt der modtages et Event når funktionen kaldes.
-        public void TransponderDataEventArgsTest()
-        {
-            // Setup test data
-            var testTrackList = new List<string>();
-            testTrackList.Add("ATR423;39045;12932;14000;20151006213456789");
+        //[Test] // Test af hvorvidt der modtages et Event når funktionen kaldes.
+        //public void TransponderDataEventArgsTest()
+        //{
+        //    // Setup test data
+        //    var testTrackList = new List<string>();
+        //    testTrackList.Add("ATR423;39045;12932;14000;20151006213456789");
 
-            UUT.TransponderDataReady += (sender, e) => { _dataFormatEventArgs = e; };
+        //    UUT.TransponderDataReady += (sender, e) => { _dataFormatEventArgs = e; };
 
-            // Trigger the fake object to execute event invocation
-            _fakeTransponderReceiver.TransponderDataReady +=
-                Raise.EventWith(new object(), new RawTransponderDataEventArgs(testTrackList));
+        //    // Trigger the fake object to execute event invocation
+        //    _fakeTransponderReceiver.TransponderDataReady +=
+        //        Raise.EventWith(new object(), new RawTransponderDataEventArgs(testTrackList));
 
-            // Assert that an event was received
-            Assert.NotNull(_dataFormatEventArgs);
-        }
+        //    // Assert that an event was received
+        //    Assert.NotNull(_dataFormatEventArgs);
+        //}
     }
 }

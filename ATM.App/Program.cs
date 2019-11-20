@@ -11,7 +11,7 @@ using AirTrafficMonitor.Data;
 using AirTrafficMonitor.TrackHandler;
 using AirTrafficMonitor.ConsoleLogger;
 using TransponderReceiver;
-
+using AirTrafficMonitor.TransponderReceiverClient;
 
 namespace ATMApp
 {
@@ -22,10 +22,13 @@ namespace ATMApp
 
             TransponderReceiverFactory transponderReceiverFactory = new TransponderReceiverFactory();
             ITransponderReceiver transponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
-            IDataFormat dataFormat = new DataFormat(transponderReceiver);
-            //ITransponderReceiver transponderReceiverClient = new TransponderReceiverClient(transponderReceiver);
+            //IDataFormat dataFormat = new DataFormat(transponderReceiver);
+            IDataFormat dataformat = new DataFormat();
+            ITransponderReceiverClient TransponderReceiverClient = new TransponderReceiverClient(transponderReceiver, dataformat);
             IConditionLogger conditionLogger = new ConditionLogger();
-            ITrackHandler trackHandler = new TrackHandler(dataFormat, conditionLogger);
+            ITrackHandler trackHandler = new TrackHandler(TransponderReceiverClient, conditionLogger);
+
+
             ConsoleRenderer renderer = new ConsoleRenderer(trackHandler);
 
 

@@ -6,16 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AirTrafficMonitor.Data;
+using AirTrafficMonitor.TransponderReceiverClient;
 using TransponderReceiver;
 
 
 namespace AirTrafficMonitor.TransponderReceiver
 {
-    public class TransponderReceiverClient
+    public class TransponderReceiverClient : ITransponderReceiverClient
     {
         private ITransponderReceiver receiver;
         private IDataFormat _dataFormat;
-        public event InformationReceivedHandler TrackData;
+
+        public event InformationReceivedHandler TrackEventReceived;
 
         // Using constructor injection for dependency/ies
         public TransponderReceiverClient(ITransponderReceiver receiver, IDataFormat dataFormat)
@@ -38,9 +40,9 @@ namespace AirTrafficMonitor.TransponderReceiver
                 //System.Console.WriteLine($"Transponderdata {data}");
             }
 
-            if (TrackData != null)
+            if (TrackEventReceived != null)
             {
-                TrackData(this, new TrackInAirspaceEvent { tracks = tempTrack });
+                TrackEventReceived(this, new TrackInAirspaceEvent { tracks = tempTrack });
             }
         }
     }

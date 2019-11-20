@@ -54,6 +54,7 @@
     <Compile Include="Track\Track.cs" />
     <Compile Include="TrackHandler\ITrackHandler.cs" />
     <Compile Include="TrackHandler\TrackHandler.cs" />
+    <Compile Include="TransponderReceiver\ITransponderReceiverClient.cs" />
     <Compile Include="TransponderReceiver\TransponderReceiverClient.cs" />
   </ItemGroup>
   <ItemGroup />
