@@ -47,6 +47,24 @@ namespace ATM.Test.Unit
             collisionTracks = e.ListOfCollidingTracks;
         }
 
+
+        [Test]
+        public void AddNewTrackToNewTracks()
+        {
+            List<Track> NewTracks = new List<Track>();
+
+            Track AddTrack = new Track();
+
+            uut.AddNewTrack(AddTrack);
+
+            Assert.That(NewTracks, Is.EqualTo(AddTrack));
+
+        }
+
+
+
+
+
         [Test] // Tag
         public void TrackTest()
         {
@@ -70,20 +88,23 @@ namespace ATM.Test.Unit
 
         }
 
-        [Test]
-        public void AddTrackTagCheck()
-        {
-            Track tagTrack = new Track();
+        //[Test]
+        //public void AddTrackTagCheck()
+        //{
+        //    Track tagTrack = new Track();
 
-            tagTrack.Tag.Returns("tagTest");
+        //    tagTrack.Tag.Returns("tagTest");
 
-            uut.AddNewTrack(tagTrack);
+        //    uut.AddNewTrack(tagTrack);
 
-            List<Track> tagTracks = new List<Track>();
+        //    tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
+        //        (this, new TrackInAirspaceEvent { tracks = tagTrack });
 
-            Assert.That(tagTracks[0].Tag, Is.EqualTo("tagTest"));
+        //    List<Track> tagTracks = uut.tracks;
 
-        }
+        //    Assert.That(tracks[0].Tag, Is.EqualTo("tagTest"));
+
+        //}
 
         // [SetUp] // Adding a track
 
