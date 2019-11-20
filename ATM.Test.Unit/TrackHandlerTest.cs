@@ -107,7 +107,7 @@ namespace ATM.Test.Unit
             tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
                 (this, new TrackInAirspaceEvent { tracks = track1 });
 
-            Assert.That(ListOfNewTracks, Is.EqualTo(track1));
+            Assert.That(ListOfNewTracks[1], Is.EqualTo(track1));
         }
 
         //[Test] // Tag
