@@ -81,8 +81,8 @@ namespace ATM.Test.Unit
 
         public List<Track> AddTracks()
         {
-            List<Track> t1 = new List<Track>();
-            t1.Add(new Track
+            List<Track> tl1 = new List<Track>();
+            tl1.Add(new Track
             {
                 Altitude = 10000,
                 Tag = "ABC1337",
@@ -90,7 +90,7 @@ namespace ATM.Test.Unit
                 XCoordinate = 6666,
                 YCoordinate = 6969
             });
-            t1.Add(new Track
+            tl1.Add(new Track
             {
                 Altitude = 12000,
                 Tag = "DEF1234",
@@ -99,35 +99,35 @@ namespace ATM.Test.Unit
                 YCoordinate = 10000
             });
 
-            return t1;
+            return tl1;
         }
 
         [Test] // Track
         public void AddTrackTest()
         {
-            List<Track> tl = AddTracks();
+            List<Track> tl1 = AddTracks();
             tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = tl });
+                (this, new TrackInAirspaceEvent { tracks = tl1 });
 
-            Assert.That(tracks1,Is.EqualTo(tl));
+            Assert.That(tracks1,Is.EqualTo(tl1));
         }
 
         [Test] // Tag
         public void TagTest()
         {
-            List<Track> tl = AddTracks();
+            List<Track> tl1 = AddTracks();
             tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = tl });
+                (this, new TrackInAirspaceEvent { tracks = tl1 });
 
-            Assert.That(tracks1[0],Is.EqualTo(tl[0]));
+            Assert.That(tracks1[0],Is.EqualTo(tl1[0]));
         }
 
         [Test] // Update
         public void UpdateTrackTest()
         {
-            List<Track> tl = AddTracks();
+            List<Track> tl1 = AddTracks();
             tr_interface.TrackEventReceived += Raise.Event<InformationReceivedHandler>
-                (this, new TrackInAirspaceEvent { tracks = tl });
+                (this, new TrackInAirspaceEvent { tracks = tl1 });
 
             List<Track> tl2 = new List<Track>();
             tl2.Add(new Track
@@ -152,6 +152,7 @@ namespace ATM.Test.Unit
 
             Assert.That(tracks2[0], Is.EqualTo(tl2[0]));
         }
+
 
 
 
