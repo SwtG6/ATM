@@ -119,7 +119,7 @@ namespace ATM.Test.Unit
                 (this, new TrackInAirspaceEvent { tracks = trackTag1 });
 
             //Assert.That(ListOfNewTracks[1], Is.EqualTo(trackTag1[1]));
-            Assert.That(ListOfNewTracks[0], Is.Not.Empty);
+            Assert.That(ListOfNewTracks, Is.Not.Empty);
         }
 
         //[Test] // Update
