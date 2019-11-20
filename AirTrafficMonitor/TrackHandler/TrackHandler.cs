@@ -32,7 +32,7 @@ namespace AirTrafficMonitor.TrackHandler
             receiverClient.TrackEventReceived += AddTrack;
         }
 
-        private void AddNewTrack(Track.Track add)
+        public void AddNewTrack(Track.Track add)
         {
             Tracks newTrack = new Tracks();
             newTrack.New = add;

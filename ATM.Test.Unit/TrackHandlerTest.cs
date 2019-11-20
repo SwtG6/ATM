@@ -12,6 +12,7 @@ using AirTrafficMonitor.Calculator;
 using AirTrafficMonitor.TransponderReceiver;
 using NSubstitute;
 using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using TransponderReceiver;
 using AirTrafficMonitor.TransponderReceiverClient;
 
@@ -68,7 +69,22 @@ namespace ATM.Test.Unit
                 Assert.That(tx != ty, Is.True);
 
         }
-        
+
+        [Test]
+        public void AddTrackTagCheck()
+        {
+            Track tagTrack = new Track();
+
+            tagTrack.Tag.Returns("tagTest");
+
+            uut.AddNewTrack(tagTrack);
+
+            List<Track> tagTracks = new List<Track>();
+
+            Assert.That(tagTracks[0].Tag, Is.EqualTo("tagTest"));
+
+        }
+
         // [SetUp] // Adding a track
 
         // https://stackoverflow.com/questions/7068843/how-to-use-datetime-parse-to-create-a-datetime-object/7068890
@@ -183,6 +199,15 @@ namespace ATM.Test.Unit
         //    tr_interface. += Raise.Event<TrackInAirspaceEvent>;
 
         //}
+
+        [Test]
+        public void GetCompassCourse()
+        {
+
+
+        }
+
+
 
 
 
