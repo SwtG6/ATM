@@ -28,18 +28,17 @@ namespace ATM.Test.Unit
 
         private TrackHandler uut;
         private ITransponderReceiverClient tr_interface;
-        private IDataFormat df_interface;
+        //private IDataFormat df_interface;
         private IConditionLogger logger;
 
         [SetUp]
         public void Setup()
         {
             tr_interface = Substitute.For<ITransponderReceiverClient>();
-            df_interface = Substitute.For<IDataFormat>();
+            //df_interface = Substitute.For<IDataFormat>();
             logger = new ConditionLogger();
-            uut = new TrackHandler(tr_interface,logger);
+            uut = new TrackHandler(tr_interface, logger);
             uut.RaiseEvent += RaiseEventHandler;
-
         }
 
         public void RaiseEventHandler(object o, TrackUpdateEvent e)
@@ -47,7 +46,6 @@ namespace ATM.Test.Unit
             tracks1 = e.ListOfNewTracks;
             tracks2 = e.ListOfUpdatedTracks;
             collisionTracks = e.ListOfCollidingTracks;
-
         }
 
         [Test] // Tag
@@ -76,11 +74,11 @@ namespace ATM.Test.Unit
 
         // [SetUp] // Adding a track
 
-        //// https://stackoverflow.com/questions/7068843/how-to-use-datetime-parse-to-create-a-datetime-object/7068890
-        // public DateTime Parse(string time)
-        // {
-        //     return DateTime.ParseExact(time, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
-        // }
+        // https://stackoverflow.com/questions/7068843/how-to-use-datetime-parse-to-create-a-datetime-object/7068890
+        public DateTime Parse(string time)
+        {
+            return DateTime.ParseExact(time, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
+        }
 
         public List<Track> AddTracks()
         {
@@ -89,7 +87,7 @@ namespace ATM.Test.Unit
             {
                 Altitude = 10000,
                 Tag = "ABC1337",
-                Timer = DateTime.Parse("20191205121106300"),
+                Timer = Parse("20191205121106300"),
                 XCoordinate = 6666,
                 YCoordinate = 6969
             });
@@ -97,7 +95,7 @@ namespace ATM.Test.Unit
             {
                 Altitude = 12000,
                 Tag = "DEF1234",
-                Timer = DateTime.Parse("20191205121107400"),
+                Timer = Parse("20191205121107400"),
                 XCoordinate = 20000,
                 YCoordinate = 10000
             });
