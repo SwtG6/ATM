@@ -199,7 +199,7 @@ namespace ATM.Test.Unit
 
         #endregion Outside Airspace Tests
 
-        #region GetDistance Test
+        #region GetDistance og GetAltitudeDistance Tests
 
         [Test] // Test 14: Test om GetDistance-funktionen virker efter hensigten ved forskel i X-koordinat
         public void DistanceBetweenTracksXTest()
@@ -266,7 +266,8 @@ namespace ATM.Test.Unit
         }
 
 
-        #endregion GetDistance Test
+
+
 
         [Test] // Test 17: Udregning af altitude afstanden mellem to placeringer.
         public void AltitudeDistanceTest()
@@ -279,6 +280,10 @@ namespace ATM.Test.Unit
 
             Assert.That(GetAltitudeDistance(testAltTrack1.Altitude, testAltTrack2.Altitude), Is.EqualTo(5000));
         }
+
+        #endregion GetDistance og GetAltitudeDistance Tests
+
+        #region GetCurrentCourse Tests
 
         [Test] // Test 18: Udregning af forskellen i kurs mellem to tracks med forskellige X- og Y-koordinator.
         public void CurrentCourseTest()
@@ -307,6 +312,8 @@ namespace ATM.Test.Unit
 
             Assert.That(GetCurrentCourse(testCourseTrack1, testCourseTrack2), Is.EqualTo(225));
         }
+
+        #endregion GetCurrentCourse Tests
 
 
         #region Collision Test
@@ -369,27 +376,42 @@ namespace ATM.Test.Unit
 
 
 
-        //[Test]
+        public DateTime Parse(string time)
+        {
+            return DateTime.ParseExact(time, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
+        }
+
+
+        [Test]
         public void TrackVelocityTest()
         {
-            string DateFormat = "yyyyMMddHHmmssfff";
-            string DateTimeOffset = "201911191822";
+            //string DateFormat = "yyyyMMddHHmmssfff";
+            //string DateTimeOffset = "201911191822";
+
+            Track testVelTrack1 = new Track();
+            testVelTrack1.XCoordinate = 20000;
+            testVelTrack1.YCoordinate = 50000;
+            testVelTrack1.Timer = Parse("20191119182230100");
+
+
+            Track testVelTrack2 = new Track();
+            testVelTrack2.XCoordinate = 30000;
+            testVelTrack2.YCoordinate = 50000;
+            testVelTrack2.Timer = Parse("20191119182250100");
 
 
 
-            DateTime testVelTime1 = DateTime.ParseExact(DateTimeOffset, DateFormat, CultureInfo.InvariantCulture);
-            DateTime testVelTime2 = DateTime.ParseExact(DateTimeOffset, DateFormat, CultureInfo.InvariantCulture);
 
             //testVelTrack1.Timer = DateTime.Today;
 
-            //Track testVelTrack1 = new Track();
+
             //testVelTrack1.Timer = (2015, 10, 06, 21, 34, 56, 789);
 
 
             //Track testVelTrack2 = new Track();
             //testVelTrack2.Timer = testVelTime2;
 
-            //Assert.That(GetCurrentVelocity(testVelTrack1, testVelTrack2), Is.EqualTo(3));
+            Assert.That(GetCurrentVelocity(testVelTrack1, testVelTrack2), Is.EqualTo(500));
         }
     }
 }
