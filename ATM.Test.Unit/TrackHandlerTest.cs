@@ -75,7 +75,7 @@ namespace ATM.Test.Unit
         [SetUp] // Adding a track
 
        // https://stackoverflow.com/questions/7068843/how-to-use-datetime-parse-to-create-a-datetime-object/7068890
-        private DateTime Parse(string time)
+        public DateTime Parse(string time)
         {
             return DateTime.ParseExact(time, "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
         }
