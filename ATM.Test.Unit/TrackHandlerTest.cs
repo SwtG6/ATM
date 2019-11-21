@@ -146,7 +146,7 @@ namespace ATM.Test.Unit
 
         //    //Assert.That(ListOfNewTracks, Is.EqualTo(track1));
         //    Assert.That(ListOfNewTracks, Is.Not.Empty);
-        }
+        //}
 
         //[Test] // Tag
         //public void TagTest()
@@ -159,7 +159,7 @@ namespace ATM.Test.Unit
         //    Assert.That(ListOfNewTracks, Is.Not.Empty);
         //}
 
-        [Test] // Update // Doesn't work
+        //[Test] // Update // Doesn't work
 
         //public void UpdateTrackTest()
         //{
