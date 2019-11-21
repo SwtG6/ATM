@@ -9,7 +9,7 @@ namespace AirTrafficMonitor.Calculator
 {
     public static class Calculator
     {
-
+        
         #region TrackIsInsideAirSpace
         //Punkt 1&5 - Bruges til at validere om tracks er indenfor airspace
 
@@ -45,10 +45,8 @@ namespace AirTrafficMonitor.Calculator
         public static double GetDistance(Track.Track track1, Track.Track track2)
         {
             // for some reason our application runs and then arrives to this point (to be specific - Track.Track track2 returns a null pointer and crashes the application)
-            var deltaX = track2.XCoordinate - track1.XCoordinate;
-            var deltaY = track2.YCoordinate - track1.YCoordinate;
-
-            return Math.Sqrt((Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2)));
+         
+            return Math.Sqrt((Math.Pow((track2.XCoordinate - track1.XCoordinate), 2) + Math.Pow(track2.YCoordinate - track1.YCoordinate, 2)));
         }
         #endregion
 
@@ -64,10 +62,8 @@ namespace AirTrafficMonitor.Calculator
 
         public static double GetCurrentCourse(Track.Track track1, Track.Track track2)
         {
-            var deltaX = track2.XCoordinate - track1.XCoordinate;
-            var deltaY = track2.YCoordinate - track1.YCoordinate;
-
-            var theta = Math.Atan2(deltaX, deltaY);
+           
+            var theta = Math.Atan2((track2.XCoordinate - track1.XCoordinate), (track2.YCoordinate - track1.YCoordinate));
 
             var angle = ((theta * 180 / Math.PI) + 360 % 360);
 

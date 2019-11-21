@@ -19,7 +19,8 @@ namespace AirTrafficMonitor.TrackHandler
         private ITransponderReceiverClient receiverClient;
         private IConditionLogger conditionLogger;
         private TrackUpdateEvent trackUpdate;
-
+        public int deltaX;
+        public int deltaY;
 
 
         public TrackHandler(ITransponderReceiverClient _receiverClient, IConditionLogger conditionLog)
